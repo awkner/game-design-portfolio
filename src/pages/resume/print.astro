@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { siteConfig } from '../../site.config';
+import { header, profile, projectsHeading, projects, jobs, skills, education, portfolioUrl, portfolioLabel, stripScheme, gamesLine } from '../../data/resume';
+import { url } from '../../utils/url';
+
+// Source for public/resume.pdf (see scripts/build-resume-pdf.mjs). Not linked in the nav, not indexed.
+const site = Astro.site ?? new URL('https://awkner.github.io');
+---
+
+<BaseLayout title="Resume (print version)" description={`Print version of the resume of ${siteConfig.ownerName}.`} noindex>
+  <article class="resume">
+    <header class="r-head">
+      <h1>{header.name}</h1>
+      <p class="r-title">{header.headline} · {header.location}</p>
+      <p class="r-contact">
+        <a href={`mailto:${header.email}`}>{header.email}</a>{' · '}
+        <a href={portfolioUrl}>{portfolioLabel}</a>{' · '}
+        <a href={header.linkedin}>{stripScheme(header.linkedin)}</a>{' · '}
+        <a href={header.artstation}>{stripScheme(header.artstation)}</a>
+      </p>
+    </header>
+
+    <section>
+      <h2>Profile</h2>
+      <p>{profile}</p>
+    </section>
+
+    <section>
+      <h2>{projectsHeading.title} <span class="r-sub">{projectsHeading.sub}</span></h2>
+      {projects.map((p) => (
+        <div class="r-entry">
+          <h3><a href={new URL(url(`/projects/${p.slug}/`), site).href}>{p.title}</a> <span class="r-meta">{p.meta}</span></h3>
+          <ul>{p.points.map((pt) => <li>{pt}</li>)}</ul>
+        </div>
+      ))}
+    </section>
+
+    <section>
+      <h2>Experience <span class="r-sub">no official game designer title; design work below was informal and uncredited</span></h2>
+      {jobs.map((j) => (
+        <div class="r-entry">
+          <h3>{j.role}, {j.studio} <span class="r-meta">{j.when}</span></h3>
+          <ul>
+            {j.games && <li><em>Titles:</em> {gamesLine(j.games)}</li>}
+            {j.design && <li><em>Design contributions (uncredited):</em> {j.design}</li>}
+            {j.points.map((pt) => <li>{pt}</li>)}
+          </ul>
+        </div>
+      ))}
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <ul class="r-skills">
+        {skills.map(([k, v]) => <li><strong>{k}:</strong> {v.join(', ')}</li>)}
+      </ul>
+    </section>
+
+    <div class="r-two">
+      <section>
+        <h2>Education</h2>
+        <ul>
+          {education.map((e) => <li>{e.school}, {e.degree}, {e.years}</li>)}
+        </ul>
+      </section>
+      <section>
+        <h2>Languages</h2>
+        <ul>{siteConfig.languages.map((l) => <li>{l}</li>)}</ul>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .resume { background: var(--surface); border: 3px solid var(--line); border-radius: var(--radius); padding: 1.5rem 1.75rem; font-size: 0.98rem; line-height: 1.45; }
+  .resume h1 { margin: 0; font-size: 2rem; }
+  .r-title { margin: 0.1rem 0; font-weight: 600; color: var(--orange-text); }
+  .r-contact { margin: 0.2rem 0 0; font-size: 0.92rem; overflow-wrap: anywhere; }
+  .resume h2 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.04em; margin: 1.1rem 0 0.4rem; padding-bottom: 0.1rem; border-bottom: 2px solid var(--orange); }
+  .r-sub { font-family: var(--font-body); font-size: 0.8rem; font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--muted); }
+  .resume h3 { font-size: 1rem; margin: 0.5rem 0 0.1rem; }
+  .r-meta { font-family: var(--font-body); font-weight: 400; font-size: 0.85rem; color: var(--muted); }
+  .resume p { margin: 0.2rem 0; }
+  .resume ul { margin: 0.1rem 0 0; padding-left: 1.2rem; }
+  .resume li { margin: 0.1rem 0; }
+  .r-skills { list-style: none; padding-left: 0; }
+  .r-two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1.5rem; }
+  @media (max-width: 640px) { .r-two { grid-template-columns: 1fr; } .resume { padding: 1rem; } }
+</style>
+
+<style is:global>
+  @page { size: A4; margin: 12mm; }
+  @media print {
+    html, body { background: #fff !important; color: #111 !important; min-height: 0; display: block; }
+    .site-header, .site-footer, .skip-link, .resume-actions { display: none !important; }
+    main { padding: 0 !important; width: 100% !important; margin: 0 !important; }
+    article.resume { border: 0 !important; border-radius: 0 !important; background: #fff !important; padding: 0 !important; font-size: 8.6pt !important; line-height: 1.3 !important; color: #111; }
+    article.resume h1 { font-size: 20pt !important; color: #111; }
+    article.resume h2 { font-size: 9.5pt !important; margin: 8pt 0 3pt !important; border-bottom: 1px solid #999 !important; color: #111; }
+    article.resume h3 { font-size: 9pt !important; margin: 4pt 0 1pt !important; color: #111; }
+    .r-title { color: #333 !important; font-size: 9.5pt !important; }
+    .r-contact { font-size: 8.5pt !important; }
+    article.resume ul.r-skills { padding-left: 0 !important; }
+    .r-sub, .r-meta { color: #444 !important; font-size: 7.6pt !important; }
+    article.resume a { color: #111; text-decoration: none; }
+    article.resume ul { padding-left: 12pt !important; }
+    article.resume li { margin: 0.5pt 0 !important; }
+    .r-entry, article.resume li { break-inside: avoid; page-break-inside: avoid; }
+  }
+</style>

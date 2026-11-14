@@ -1,0 +1,170 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { siteConfig, statusLabels } from '../../site.config';
+import { header, profile, titleNote, projectsHeading, projects, jobs, skills, education, stripScheme } from '../../data/resume';
+import { url } from '../../utils/url';
+
+const resumeHref = siteConfig.resumeUrl.startsWith('/') ? url(siteConfig.resumeUrl) : siteConfig.resumeUrl;
+const entries = await getCollection('projects');
+const cards = projects.map((p) => ({ ...p, entry: entries.find((e) => e.id === p.slug) }));
+---
+
+<BaseLayout title="Resume" description={`Resume of ${siteConfig.ownerName}, game designer: design projects, experience, skills and education.`}>
+  <section class="rs-head">
+    <div class="rs-head-copy">
+      <h1>{header.name}</h1>
+      <p class="rs-headline"><span class="mark">{header.headline}</span></p>
+      <p class="rs-where">{header.location}</p>
+      <ul class="rs-links">
+        <li><a href={`mailto:${header.email}`}>{header.email}</a></li>
+        <li><a href={header.linkedin} rel="noopener" target="_blank">{stripScheme(header.linkedin)}<span class="sr-only"> (opens in new tab)</span></a></li>
+        <li><a href={header.artstation} rel="noopener" target="_blank">{stripScheme(header.artstation)}<span class="sr-only"> (opens in new tab)</span></a></li>
+      </ul>
+      {resumeHref && <p class="rs-cta"><a class="button" href={resumeHref}>Download PDF (1 page)</a></p>}
+    </div>
+    <svg class="hero-die" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+      <rect class="face" x="8" y="8" width="84" height="84" rx="16" stroke-width="5" />
+      <circle class="pip" cx="30" cy="30" r="8" />
+      <circle class="pip" cx="50" cy="50" r="8" />
+      <circle class="pip" cx="70" cy="70" r="8" />
+      <circle class="pip" cx="70" cy="30" r="8" />
+      <circle class="pip" cx="30" cy="70" r="8" />
+    </svg>
+  </section>
+
+  <section class="rs-section">
+    <p class="rs-profile">{profile}</p>
+    <p class="badge rs-note">{titleNote}</p>
+  </section>
+
+  <section class="rs-section" aria-labelledby="rs-projects">
+    <h2 id="rs-projects">{projectsHeading.title}</h2>
+    <p class="rs-sub">{projectsHeading.sub}</p>
+    <div class="grid rs-grid">
+      {cards.map((p) => (
+        <article class="card rs-card">
+          {p.entry && (
+            <a href={url(`/projects/${p.slug}`)} class="rs-cover-link" tabindex="-1" aria-hidden="true">
+              <Image src={p.entry.data.cover} alt="" widths={[400, 800]} sizes="(min-width: 700px) 360px, 100vw" class="card-img" />
+            </a>
+          )}
+          <div class="card-body">
+            <h3><a href={url(`/projects/${p.slug}`)}>{p.title}</a></h3>
+            <p class="card-meta">
+              {p.entry && <span class={`status status-${p.entry.data.status}`}>{statusLabels[p.entry.data.status]}</span>}
+              <span class="card-role">{p.meta}</span>
+            </p>
+            <ul class="rs-points">{p.points.map((pt) => <li>{pt}</li>)}</ul>
+            <p class="rs-more"><a href={url(`/projects/${p.slug}`)}>Read the case study<span class="sr-only"> for {p.title}</span> &rarr;</a></p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="rs-section" aria-labelledby="rs-exp">
+    <h2 id="rs-exp">Experience</h2>
+    <p class="rs-sub">Reverse chronological. Mostly 3D art, pixel art, animation and art direction on commercial games.</p>
+    <ol class="rs-timeline">
+      {jobs.map((j) => (
+        <li class="rs-job">
+          <h3>{j.role}, {j.studio}</h3>
+          <p class="rs-when">{j.when}</p>
+          {j.webContext && <p class="rs-context">{j.webContext}</p>}
+          {j.games && (
+            <ul class="rs-chips" aria-label="Titles">
+              {j.games.map((g) => <li>{g.title}{g.year ? ` (${g.year})` : ''}</li>)}
+            </ul>
+          )}
+          {j.games?.some((g) => g.note) && <p class="rs-context">{j.games.filter((g) => g.note).map((g) => `${g.title}: ${g.note}`).join('. ')}.</p>}
+          {j.design && (
+            <div class="rs-design">
+              <span class="rs-tag">Design contributions (uncredited)</span>
+              <p>{j.design}</p>
+            </div>
+          )}
+          <ul class="rs-points">
+            {j.points.map((pt) => <li>{pt}</li>)}
+            {j.webPoints?.map((pt) => <li>{pt}</li>)}
+          </ul>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="rs-section" aria-labelledby="rs-skills">
+    <h2 id="rs-skills">Skills</h2>
+    <dl class="rs-skills">
+      {skills.map(([k, v]) => (
+        <div>
+          <dt>{k}</dt>
+          <dd><ul class="tags rs-chips">{v.map((x) => <li>{x}</li>)}</ul></dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <div class="rs-two">
+    <section class="rs-section" aria-labelledby="rs-edu">
+      <h2 id="rs-edu">Education</h2>
+      <ul class="rs-plain">
+        {education.map((e) => <li><strong>{e.degree}</strong><br />{e.school}, {e.years}</li>)}
+      </ul>
+    </section>
+    <section class="rs-section" aria-labelledby="rs-lang">
+      <h2 id="rs-lang">Languages</h2>
+      <ul class="rs-plain">{siteConfig.languages.map((l) => <li>{l}</li>)}</ul>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .rs-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; padding-block: 1rem 0.5rem; }
+  .rs-head-copy { min-width: 0; }
+  .rs-head h1 { margin-bottom: 0.1em; }
+  .rs-headline { margin: 0; font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; }
+  .rs-where { margin: 0.2rem 0 0.8rem; color: var(--muted); }
+  .rs-links { display: flex; flex-wrap: wrap; gap: 0.4rem 0.6rem; list-style: none; padding: 0; margin: 0 0 1.25rem; }
+  .rs-links a { display: inline-block; background: var(--tint-blue); color: var(--ink); border: 2px solid var(--line); border-radius: 999px; padding: 0.1rem 0.8rem; font-size: 0.92rem; font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .rs-links a:hover { background: var(--tint-orange); color: var(--ink); }
+  .rs-cta { margin: 0; }
+  .rs-section { margin-top: 2rem; }
+  .rs-section h2 { margin: 0 0 0.2rem; display: inline-block; padding-bottom: 0.15em; border-bottom: 3px solid var(--orange); }
+  .rs-sub { margin: 0.3rem 0 1rem; color: var(--muted); font-size: 0.95rem; }
+  .rs-profile { max-width: 70ch; margin: 0 0 1rem; }
+  .rs-note { font-size: 0.9rem; }
+  .rs-grid { margin-top: 0.5rem; }
+  .rs-cover-link { display: block; }
+  .rs-card .card-body h3 { font-size: 1.25rem; }
+  .rs-card .card-body h3 a { color: var(--ink); text-decoration: none; }
+  .rs-card .card-body h3 a:hover { color: var(--orange-text); text-decoration: underline; }
+  .rs-points { margin: 0.4rem 0 0; padding-left: 1.1rem; font-size: 0.95rem; color: var(--ink); }
+  .rs-points li { margin: 0.25rem 0; }
+  .rs-card .card-body .rs-more { margin: 0.8rem 0 0; font-weight: 700; }
+  .rs-timeline { list-style: none; margin: 1rem 0 0; padding: 0 0 0 1.5rem; border-left: 4px solid var(--line); }
+  .rs-job { position: relative; margin: 0 0 1.5rem; padding: 1rem 1.1rem; background: var(--surface); border: 3px solid var(--line); border-radius: var(--radius); box-shadow: 5px 5px 0 var(--blue); }
+  .rs-job::before { content: ""; position: absolute; left: calc(-1.5rem - 12px); top: 1.2rem; width: 16px; height: 16px; background: var(--orange); border: 3px solid var(--line); border-radius: 50%; }
+  .rs-job h3 { margin: 0; font-size: 1.15rem; }
+  .rs-when { margin: 0.1rem 0 0.4rem; color: var(--muted); font-size: 0.9rem; }
+  .rs-context { margin: 0.3rem 0; color: var(--muted); font-size: 0.93rem; }
+  .rs-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; margin: 0.4rem 0; }
+  .rs-chips li { background: var(--tint-blue); color: var(--ink); border: 2px solid var(--line); border-radius: 999px; padding: 0.05rem 0.7rem; font-size: 0.85rem; font-weight: 500; }
+  .rs-design { margin: 0.6rem 0; padding: 0.6rem 0.8rem; background: var(--tint-orange); border-left: 5px solid var(--orange); border-radius: 0 10px 10px 0; }
+  .rs-design p { margin: 0.3rem 0 0; font-size: 0.95rem; }
+  .rs-tag { display: inline-block; background: var(--orange); color: var(--on-orange); border: 2px solid var(--line); border-radius: 999px; padding: 0 0.7rem; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+  .rs-skills { margin: 1rem 0 0; display: grid; gap: 0.6rem; }
+  .rs-skills dt { color: var(--orange-text); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+  .rs-skills dd { margin: 0; }
+  .rs-skills .tags { margin: 0.2rem 0 0; }
+  .rs-two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; }
+  .rs-plain { list-style: none; padding: 0; margin: 0.8rem 0 0; }
+  .rs-plain li { margin: 0 0 0.7rem; }
+  @media (max-width: 640px) {
+    .rs-two { grid-template-columns: 1fr; }
+    .rs-timeline { padding-left: 1.1rem; }
+    .rs-job { padding: 0.8rem; }
+    .rs-job::before { left: calc(-1.1rem - 12px); }
+  }
+</style>

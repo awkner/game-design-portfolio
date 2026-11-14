@@ -11,9 +11,12 @@ if (site.includes('example.com')) {
   );
 }
 
+const base = '/game-design-portfolio';
+
 // https://astro.build/config
 export default defineConfig({
   site,
-  base: '/game-design-portfolio',
+  base,
   output: 'static',
+  redirects: { '/experience': `${base}/resume/` },
 });

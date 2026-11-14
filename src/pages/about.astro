@@ -24,7 +24,7 @@ const tools = [
       I don't have a formal Game Designer credit yet, and I'd rather say so plainly. The projects on
       this site are my design work: a systems-driven tactics roguelike, a rhythm fighting game and an
       asymmetric multiplayer game. Each page says what I decided, what was tested and what was not.
-      My art and production history is on the <a href={url('/experience')}>Experience</a> page.
+      My art, production and design history is on the <a href={url('/resume/')}>Resume</a> page.
     </p>
     <p>I'm looking for game design roles where a background in art and production helps the team.</p>
     <h2>Tools</h2>
@@ -41,9 +41,10 @@ const tools = [
       {siteConfig.languages.map((l) => <li>{l}</li>)}
     </ul>
     <h2>Resume</h2>
-    {resumeHref
-      ? <p><a class="button" href={resumeHref}>Download resume (PDF)</a></p>
-      : <p>Resume available on request: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>}
+    <p>
+      <a href={url('/resume/')}>Read the resume</a> (experience, design projects, skills)
+      {resumeHref && <> or <a class="button" href={resumeHref}>Download PDF (1 page)</a></>}
+    </p>
     <h2>Links</h2>
     <ul class="link-row">
       <li><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>

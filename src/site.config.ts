@@ -14,7 +14,7 @@ export const siteConfig = {
   linkedin: 'https://www.linkedin.com/in/brunobriseno',
   artstation: 'https://awkner.artstation.com',
   // Put resume.pdf in /public and set to '/resume.pdf' (leave empty to hide the link and show "available on request").
-  resumeUrl: '',
+  resumeUrl: '/resume.pdf',
   // Default social preview image (1200x630 PNG in /public).
   ogImage: '/og-default.png',
   // Bump when projects change (YYYY-MM)

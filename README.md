@@ -12,7 +12,12 @@ npm run dev        # servidor de desenvolvimento em http://localhost:4321
 npm run build      # gera o site estático na pasta dist/
 npm run preview    # serve a pasta dist/ localmente para conferir o build
 npx astro check    # verifica tipos e erros
+npm run resume:pdf # build + gera public/resume.pdf a partir de /resume/print/ (precisa do Chrome)
 ```
+
+## Resume PDF
+
+Os dados do currículo estão em `src/data/resume.ts`. A página `/resume/print/` (`src/pages/resume/print.astro`, sem nav e com noindex) é a versão de uma página; o PDF em `public/resume.pdf` é gerado a partir dela. Depois de editar o currículo, rode `npm run resume:pdf`: ele faz o build, sobe o preview, imprime em A4 com o Chrome headless e confere que o PDF tem 1 página. Se o Chrome não estiver no caminho padrão, defina `CHROME_PATH`. O script também copia o PDF para `dist/` e falha se o PDF tiver links locais.
 
 ## Como adicionar um novo projeto
 
@@ -45,7 +50,7 @@ A página mostra: caixa de resumo (Role, Team, Duration, Tools, Platform, Status
 6. `## What I learned / what I'd do next`
 7. `## Credits`
 
-Os três projetos (`diceforce.md`, `beatdown-remix.md`, `roblox-anomaly.md`) usam essa estrutura; cada um tem um comentário HTML no topo com a mídia que ainda falta capturar. A página `src/pages/experience.astro` lista a experiência profissional (editar os dados no frontmatter do próprio arquivo).
+Os três projetos (`diceforce.md`, `beatdown-remix.md`, `roblox-anomaly.md`) usam essa estrutura; cada um tem um comentário HTML no topo com a mídia que ainda falta capturar. A experiência profissional e o currículo vivem em `src/data/resume.ts` (fonte única), usada por `/resume/` (versão web) e `/resume/print/` (versão impressa, base do PDF). `/experience/` redireciona para `/resume/`.
 
 ## Onde editar as configurações
 
