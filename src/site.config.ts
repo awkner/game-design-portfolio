@@ -5,9 +5,9 @@ export const siteConfig = {
   // Main specialty, shown in the home headline
   specialty: 'Game Designer',
   // Short tagline shown in the home hero
-  tagline: 'Game designer across systems (tactics), rhythm combat with narrative, and asymmetric multiplayer, with 13+ years in game development.',
+  tagline: 'For 13+ years I have shipped games as a senior 3D generalist and art lead, designing along the way: tactical and RPG systems for Chroma Squad and Galaxy of Pen & Paper, the customization system of Spirit of the Island, and game concepts pitched to Apple and Nintendo. In 2026 I designed three original prototypes: a tactics roguelike, a call-and-response rhythm game and a Roblox asymmetric co-op.',
   languages: ['Portuguese (native)', 'English (fluent)'],
-  description: 'Game design portfolio: systems design, rhythm combat and asymmetric multiplayer case studies, plus 13+ years of game development experience.',
+  description: 'Game design portfolio of Bruno Santos Briseno: 13+ years shipping games as a senior 3D generalist and art lead with design work throughout, plus case studies on a tactics roguelike, a call-and-response rhythm game and a Roblox asymmetric co-op.',
   email: 'brunosbriseno@gmail.com',
   linkedin: 'https://www.linkedin.com/in/brunobriseno',
   artstation: 'https://awkner.artstation.com',

@@ -93,10 +93,14 @@ a:hover { color: var(--orange-text); }
 
 /* ---------- Hero ---------- */
 .hero { padding-block: 2rem 1rem; }
-.hero-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; }
-.hero-copy { min-width: 0; }
+.hero-row { display: flex; align-items: flex-start; justify-content: space-between; gap: clamp(1rem, 4vw, 3rem); }
+.hero-copy { min-width: 0; flex: 1 1 0; }
+.hero-copy h1 { margin: 0 0 0.6rem; line-height: 1.05; }
+.hero-name { display: block; font-size: clamp(2rem, 6vw, 3.6rem); overflow-wrap: break-word; text-wrap: balance; }
+.hero-role { display: block; margin-top: 0.15em; font-size: clamp(1.4rem, 4.6vw, 2.2rem); font-weight: 700; color: var(--muted); }
+.hero-role .mark { white-space: nowrap; color: var(--ink); }
 .mark { text-decoration: underline; text-decoration-color: var(--orange-text); text-decoration-thickness: 0.18em; text-underline-offset: 0.12em; text-decoration-skip-ink: none; }
-.hero-die { flex: none; width: clamp(110px, 22vw, 220px); height: auto; overflow: visible; stroke: var(--line); stroke-width: 2.5; stroke-linejoin: round; }
+.hero-die { flex: none; width: clamp(120px, 20vw, 224px); margin-right: 0.5rem; margin-top: 0.4rem; height: auto; overflow: visible; stroke: var(--line); stroke-width: 2.5; stroke-linejoin: round; }
 .hero-die .st { fill: var(--tint-orange); }
 .hero-die .sl { fill: color-mix(in srgb, var(--tint-orange), var(--line) 22%); }
 .hero-die .sr { fill: color-mix(in srgb, var(--tint-orange), var(--line) 38%); }
@@ -111,6 +115,7 @@ a:hover { color: var(--orange-text); }
 .hero-die .ap { fill: var(--ink); }
 .hero-die .bp { fill: var(--surface); }
 .lead { font-size: 1.25rem; color: var(--muted); max-width: 60ch; }
+.hero-copy .lead { font-size: 1.15rem; max-width: 58ch; margin: 0; }
 
 /* ---------- Buttons ---------- */
 .button { display: inline-block; background: var(--orange); color: var(--on-orange); padding: 0.6rem 1.3rem; border: 3px solid var(--line); border-radius: 999px; box-shadow: 4px 4px 0 var(--shadow); text-decoration: none; font-weight: 700; transition: transform 0.12s ease, box-shadow 0.12s ease; }
@@ -131,14 +136,17 @@ a:hover { color: var(--orange-text); }
 .card-body { flex: 1; display: flex; flex-direction: column; padding: 1rem 1.25rem 1.25rem; }
 .card-body h3 { margin: 0 0 0.4rem; font-size: 1.3rem; }
 .card-body p { margin: 0 0 0.8rem; color: var(--muted); font-size: 0.97rem; }
-.card-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 0 0 0.5rem !important; font-size: 0.85rem !important; }
+.card-meta { display: flex; flex-wrap: wrap; gap: 0.15rem 0.3rem; align-items: center; margin: 0 0 1rem !important; font-size: 0.75rem !important; }
+.card-meta > * { white-space: nowrap; }
+.card-meta .status { flex: none; font-size: 0.72rem; padding: 0.05rem 0.45rem; }
+@media (min-width: 400px) { .card-meta { flex-wrap: nowrap; } }
 .status { display: inline-block; background: var(--tint-orange); color: var(--ink); border: 2px solid var(--line); border-radius: 999px; padding: 0.05rem 0.7rem; font-weight: 700; font-size: 0.8rem; transform: rotate(-2deg); }
 .status::before { content: "\25C6\00a0"; color: var(--orange-text); }
 .status-playable { background: var(--tint-blue); }
 .status-playable::before { color: var(--link); }
 
 /* Design-discipline pills (same discipline = same color on every card) */
-.card-body .disciplines { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0.9rem 0 0; margin: auto 0 0; }
+.card-body .disciplines { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.4rem; list-style: none; padding: 0.9rem 0 0; margin: auto 0 0; }
 .disc { --dc: var(--tint-blue); --dd: var(--muted); display: inline-flex; align-items: center; gap: 0.4rem; background: var(--dc); color: var(--ink); border: 2px solid var(--line); border-radius: 999px; padding: 0.05rem 0.7rem; font-size: 0.8rem; font-weight: 600; line-height: 1.5; }
 .disc::before { content: ""; flex: none; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--dd); }
 .disc-systems-design { --dc: var(--d-systems); --dd: var(--d-dot-systems); }
@@ -148,6 +156,9 @@ a:hover { color: var(--orange-text); }
 .disc-level-design { --dc: var(--d-level); --dd: var(--d-dot-level); }
 .disc-narrative-design { --dc: var(--d-narrative); --dd: var(--d-dot-narrative); }
 .disc-game-feel { --dc: var(--d-game-feel); --dd: var(--d-dot-game-feel); }
+.card-body .disc { justify-content: flex-start; gap: 0.25rem; padding: 0.05rem 0.35rem; font-size: 0.7rem; white-space: nowrap; }
+@media (max-width: 359px) { .card-body .disciplines { grid-template-columns: 1fr; } }
+.card-body .disc::before { width: 0.4rem; height: 0.4rem; }
 .disc-multiplayer-design { --dc: var(--d-multiplayer); --dd: var(--d-dot-multiplayer); }
 
 .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; margin: 1.5rem 0 0; }
@@ -155,7 +166,7 @@ a:hover { color: var(--orange-text); }
 
 /* ---------- Case study ---------- */
 .project-cover { width: 100%; border: 3px solid var(--line); border-radius: var(--radius); box-shadow: 6px 6px 0 var(--orange); margin-block: 1.5rem 2.5rem; aspect-ratio: 16 / 9; object-fit: cover; }
-.prose { max-width: 70ch; overflow-wrap: break-word; }
+.prose { max-width: 70ch; overflow-wrap: break-word; text-wrap: balance; }
 .prose h2 { padding-bottom: 0.15em; border-bottom: 3px solid var(--orange); display: inline-block; }
 .prose h2:first-child { margin-top: 0; }
 .prose img { border: 3px solid var(--line); border-radius: 10px; }
@@ -216,8 +227,8 @@ a:hover { color: var(--orange-text); }
 .link-row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; list-style: none; padding: 0; }
 
 /* ---------- Responsive / motion ---------- */
+@media (max-width: 560px) { .hero-die { display: none; } }
 @media (max-width: 480px) {
-  .hero-die { display: none; }
   .prose details > summary { flex-wrap: wrap; }
   .prose details > summary::after { margin-left: 1.15rem; }
 }
