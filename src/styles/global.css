@@ -137,6 +137,28 @@ a:hover { color: var(--orange-text); }
 .prose pre code { background: none; padding: 0; }
 .prose pre { overflow-x: auto; max-width: 100%; }
 
+/* In 30 seconds (TL;DR) */
+.tldr { background: var(--tint-orange); border: 3px solid var(--line); border-radius: var(--radius); box-shadow: 6px 6px 0 var(--orange); padding: 1.1rem 1.25rem 1.25rem; margin-block: 2rem; }
+.tldr-title { margin: 0 0 0.75rem; font-size: 1.15rem; letter-spacing: 0.02em; }
+.tldr-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+.tldr-list li { color: var(--ink); font-size: 1.05rem; line-height: 1.45; }
+.tldr-label { display: block; margin-bottom: 0.1rem; color: var(--orange-text); font-family: var(--font-display); font-weight: 800; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; }
+@media (min-width: 760px) { .tldr-list { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; } }
+
+/* Collapsible detail (details/summary) */
+.prose details { margin: 1rem 0 1.75rem; background: var(--surface); border: 2px solid var(--line); border-radius: 10px; }
+.prose details > summary { display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.9rem; cursor: pointer; font-weight: 700; color: var(--ink); list-style: none; border-radius: 8px; }
+.prose details > summary::-webkit-details-marker { display: none; }
+.prose details > summary::before { content: ""; flex: none; width: 0.55em; height: 0.55em; border-right: 3px solid var(--orange-text); border-bottom: 3px solid var(--orange-text); transform: rotate(-45deg); transition: transform 0.15s ease; }
+.prose details[open] > summary::before { transform: rotate(45deg); }
+.prose details > summary:hover { background: var(--tint-blue); }
+.prose details > summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.prose details[open] > summary { border-bottom: 2px solid var(--line); border-radius: 8px 8px 0 0; }
+.prose details > :not(summary) { margin-inline: 0.9rem; }
+.prose details > :nth-child(2) { margin-top: 0.9rem; }
+.prose details > :last-child { margin-bottom: 0.9rem; }
+@media (prefers-reduced-motion: reduce) { .prose details > summary::before { transition: none; } }
+
 .media { margin-bottom: 2rem; }
 .media iframe { width: 100%; border: 3px solid var(--line); border-radius: var(--radius); background: var(--surface); }
 .video { position: relative; aspect-ratio: 16 / 9; }

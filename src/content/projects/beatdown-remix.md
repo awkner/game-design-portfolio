@@ -22,6 +22,10 @@ tags: [Rhythm, Combat, Narrative, Systems design, Web]
 featured: true
 order: 2
 draft: false
+tldr:
+  problem: "Rhythm games rarely give repetition physical meaning; I wanted repeating the boss's moves to be blocking and countering."
+  decision: "I replaced the fight loop with call and response, and ended fights by attack-score tiers, not boss HP."
+  evidence: "Simulation against bot players showed about a 3x damage spread, driving the finish tiers; no outside playtest yet."
 ---
 
 ## The problem
@@ -41,21 +45,38 @@ Evidence below comes from my own playtests of each build and from a simulation s
 
 ### 1. From a pulse-reading fight loop to call and response
 
-**Version.** The September prototype was a fighting loop on a fixed pulse: a light hit every beat, telegraphed heavies, parry and riposte, a stagger bar. It was built and tested, and it asked whether a new player could read the pulse and four tells in 60 seconds.
-
-**Evidence.** After playing it, I wanted a simpler, PaRappa-like core first, with fighting depth layered on later. The rule set had to be read before acting, which clashes with "fair reading".
+**Version.** The September prototype was a fighting loop on a fixed pulse: a light hit every beat, telegraphed heavies, parry and riposte, a stagger bar.
 
 **Change.** On 8 Nov I replaced it entirely with call and response: Bonnie performs a phrase, the tape rewinds for one beat, and you repeat it. The old code and tests were archived, not deleted.
 
+<details>
+<summary>How I got there: the earlier version and the evidence</summary>
+
+It was built and tested, and it asked whether a new player could read the pulse and four tells in 60 seconds.
+
+**Evidence.** After playing it, I wanted a simpler, PaRappa-like core first, with fighting depth layered on later. The rule set had to be read before acting, which clashes with "fair reading".
+
+</details>
+
 ### 2. Finish tiers instead of boss HP
+
+**Change.** The three arrows only block. The right arrow is the only attack, in two slots per phrase: a finisher on the last beat of the Response, and a bonus hit on the offbeat that only exists after a clean phrase. The attack percentage at the end of the song picks the result: under 20% is a TIME LIMIT DRAW, under 70% is a T.K.O., and 70% or more is a K.O. A FLAWLESS tag appears if you took no damage. The stagger and FREESTYLE system that had been built was cut at the same time, because it skipped chart phrases that still counted in the maximum score. It competed with what the game now measures.
+
+<details>
+<summary>How I got there: the earlier version and the evidence</summary>
 
 **Version.** Boss HP of 300, with damage per hit, so the fight ended when the boss fell.
 
 **Evidence.** A script that runs the real engine against simulated players showed about a 3x spread in damage between players. A fixed HP bar meant strong players finished early and weak ones never finished.
 
-**Change.** The three arrows only block. The right arrow is the only attack, in two slots per phrase: a finisher on the last beat of the Response, and a bonus hit on the offbeat that only exists after a clean phrase. The attack percentage at the end of the song picks the result: under 20% is a TIME LIMIT DRAW, under 70% is a T.K.O., and 70% or more is a K.O. A FLAWLESS tag appears if you took no damage. The stagger and FREESTYLE system that had been built was cut at the same time, because it skipped chart phrases that still counted in the maximum score. It competed with what the game now measures.
+</details>
 
 ### 3. Boss twists from the base loop: the walking note and claps
+
+**Change.** In the current build a claps phrase fills the tape lane with crowd hands that close on every beat, so you cannot tell which slots hold a note. You play the rhythm you saw and the buttons from memory. Rule: one twist per section, never two in a phrase.
+
+<details>
+<summary>How I got there: the earlier version and the evidence</summary>
 
 **Version.** My first boss mechanics (a referee, a ghost, a cutscene, named moves) were too complex and needed new art. I switched to "play with the base loop": change the rhythm and what is shown, with one input.
 
@@ -63,21 +84,29 @@ Evidence below comes from my own playtests of each build and from a simulation s
 
 **Evidence, claps.** Version 1 hid notes during the Call and was too hard. Version 2 moved the cover to the rewind. Version 3 added an encore and a ramp to "everything hidden", which I had not asked for, and I disliked it. Version 4 covered half the notes with two buttons per phrase, and short repeating patterns worked best.
 
-**Change.** In the current build a claps phrase fills the tape lane with crowd hands that close on every beat, so you cannot tell which slots hold a note. You play the rhythm you saw and the buttons from memory. Rule: one twist per section, never two in a phrase.
+</details>
 
 ### 4. Feedback lands on the beat, at the input
 
 **Version.** Hit feedback fired when the judgement resolved.
 
+**Change.** It became the top rule. Every sound, effect and pose fires with the input, strike effects take the colour of the button, and anticipation frames are pre-rolled so the hit frame lands on the beat.
+
+<details>
+<summary>How I got there: the earlier version and the evidence</summary>
+
 **Evidence.** I caught it in playtest: feedback arrived about 170 ms late and the game felt off the beat.
 
-**Change.** It became the top rule. Every sound, effect and pose fires with the input, strike effects take the colour of the button, and anticipation frames are pre-rolled so the hit frame lands on the beat.
+</details>
 
 ![Timeline of the Riot chart: an intro, four sections and three intermissions across 2 minutes 59 seconds.](../../assets/projects/beatdown-remix/chart-timeline.png)
 
 *The chart structure, diagrammed from the design doc. Acts follow the song's real breaks, not boss HP. Decision shown: one twist per section, with dialogue in the rests.*
 
 ## Design artifacts
+
+<details>
+<summary>Show the design artifacts (4 images with captions)</summary>
 
 ![Two renders of Kass throwing a punch. The left is a cut-out rig pose, the right is the sprite with a stronger twisted torso.](../../assets/projects/beatdown-remix/rig-vs-sprite.png)
 
@@ -94,6 +123,8 @@ Evidence below comes from my own playtests of each build and from a simulation s
 ![A sheet of twelve cartoon crowd members cheering with raised fists, clapping and holding props.](../../assets/projects/beatdown-remix/crowd-hyped.png)
 
 *One of three crowd sheets (neutral, boo and hyped). The boo and hyped sheets were edited from the neutral one, so three generations replaced eighteen. The crowd reacts as a feedback layer.*
+
+</details>
 
 ## Result
 

@@ -21,6 +21,10 @@ tags: [Multiplayer, Asymmetric, Rules design, Information design, Roblox]
 featured: false
 order: 3
 draft: false
+tldr:
+  problem: "Anomaly games on Roblox generate anomalies with a system; I asked what happens if a player is the anomaly, live."
+  decision: "A walking Ghost changes things only where a server-verified rule says nobody is looking, with no free hints."
+  evidence: "Prototype tested only by me, with agent-driven tests; a 19-hypothesis playtest kit is written but has not been run."
 ---
 
 ## The problem
@@ -45,9 +49,14 @@ My evidence is automated rules tests, review by a second agent, Studio playtests
 
 **Version.** One subtle anomaly type was an object that loses its shadow.
 
+**Change.** I replaced it with a 12 degree tilt. Rule: anomalies must be readable at a glance on any device.
+
+<details>
+<summary>How I got there: the earlier version and the evidence</summary>
+
 **Evidence.** In the Studio test, five objects with the shadow removed looked identical to the normal room. Shadow quality also depends on each player's graphics setting, so it would be unfair.
 
-**Change.** I replaced it with a 12 degree tilt. Rule: anomalies must be readable at a glance on any device.
+</details>
 
 ![A living room with a bookshelf, a blue armchair, a coffee table, a sofa and a yellow ball. Nothing is altered.](../../assets/projects/roblox-anomaly/shadow-normal.jpg)
 
@@ -63,11 +72,16 @@ My evidence is automated rules tests, review by a second agent, Studio playtests
 
 ### 2. The Ghost stops watching from above and starts to walk
 
+**Change.** In "The Change" mode the Ghost walks the house, invisible to Watchers, with no collision and no walking through walls. He sees Watchers through walls, plus vision cones and outlines on objects (red: seen now, orange: seen a moment ago). Looking became a rule with the camera frustum, nine points per object, wall-aware rays and 1.5 s of memory.
+
+<details>
+<summary>How I got there: the earlier version and the evidence</summary>
+
 **Version.** The first mode gave the Ghost a top-down view. It clicked a room, an object, then a type, and Watchers reported with a type and an object.
 
 **Evidence.** The top-down camera made the Ghost a menu, and "room occupied" was a poor stand-in for looking. I decided the Ghost should walk, so that space and time become a cost for him.
 
-**Change.** In "The Change" mode the Ghost walks the house, invisible to Watchers, with no collision and no walking through walls. He sees Watchers through walls, plus vision cones and outlines on objects (red: seen now, orange: seen a moment ago). Looking became a rule with the camera frustum, nine points per object, wall-aware rays and 1.5 s of memory.
+</details>
 
 ![Top-down view of the house with the legacy Ghost mode, with room labels reading NOT SEEN.](../../assets/projects/roblox-anomaly/legacy-topdown.jpg)
 
@@ -79,19 +93,32 @@ My evidence is automated rules tests, review by a second agent, Studio playtests
 
 ### 3. "Same answer": no free detector
 
+**Change.** Every check now answers identically for normal and altered objects. The Ghost's own position leaks through eleven side channels (body, shadow, name, footsteps, chat bubble and others), which I closed or listed. Footstep sound is handled in code but has never been heard in a real session.
+
+<details>
+<summary>How I got there: the earlier version and the evidence</summary>
+
 **Version.** Checks the Watcher could trigger without paying the touch cost (drop preview, refusal messages, reach) answered differently for altered and normal objects.
 
 **Evidence.** Agent reviews found leaks such as a street-light shadow that gave away a moved object, and a reference pose handed to the client. Each one was a free detector.
 
-**Change.** Every check now answers identically for normal and altered objects. The Ghost's own position leaks through eleven side channels (body, shadow, name, footsteps, chat bubble and others), which I closed or listed. Footstep sound is handled in code but has never been heard in a real session.
+</details>
 
 ### 4. A game of work, and the rejections that shaped it
+
+**Change.** Continuous tidying: Watchers carry boxes and install items with gestures while anomalies appear. Touching an altered object before correcting it gives the Ghost a point and a random curse. Fixed furniture is "too heavy", not a special rule.
+
+<details>
+<summary>How I got there: the earlier version and the evidence</summary>
 
 **Version.** After the extra-mechanics rounds, the game was "tidy first, then watch". Arriving at it was a scope cut of a cheap test that quietly became design, which is a mistake I should have marked as temporary.
 
 **Evidence.** I rejected three agent proposals because they were arbitrary: "there is no dropping", a teleport back to the pile, and "accepting the change" as a neutral choice.
 
-**Change.** Continuous tidying: Watchers carry boxes and install items with gestures while anomalies appear. Touching an altered object before correcting it gives the Ghost a point and a random curse. Fixed furniture is "too heavy", not a special rule.
+</details>
+
+<details>
+<summary>Before and after the art pass</summary>
 
 ![Before: top-down render of the house with plain pale floors in the kitchen and bathroom and flat white lights.](../../assets/projects/roblox-anomaly/house-before.png)
 
@@ -100,6 +127,8 @@ My evidence is automated rules tests, review by a second agent, Studio playtests
 ![After: the same house with tiled kitchen and bathroom floors, a dark lawn and warmer room lights.](../../assets/projects/roblox-anomaly/house-after.png)
 
 *After the art pass (Blender render, not an in-game capture). Decision: playable furniture keeps its colour, so contrast against the wall is what makes an anomaly visible.*
+
+</details>
 
 ## Design artifacts
 

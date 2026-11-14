@@ -20,6 +20,7 @@ const projects = defineCollection({
       platform: z.array(z.string()).optional(),
       contribution: z.array(z.string()).optional(),
       aiDisclosure: z.string().optional(),
+      tldr: z.object({ problem: z.string(), decision: z.string(), evidence: z.string() }).optional(),
       tools: z.array(z.string()),
       duration: z.string().optional(),
       year: z.number(),
