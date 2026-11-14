@@ -1,9 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-// TODO: set your real URL, either here or via the SITE_URL environment variable
-// (e.g. https://yourname.github.io or https://yourname.netlify.app).
-const site = process.env.SITE_URL || 'https://example.com';
+// GitHub Pages project site: https://awkner.github.io/game-design-portfolio/
+// SITE_URL can override the default (e.g. for a custom domain or another host).
+const site = process.env.SITE_URL || 'https://awkner.github.io';
 
 if (site.includes('example.com')) {
   console.warn(
@@ -14,6 +14,6 @@ if (site.includes('example.com')) {
 // https://astro.build/config
 export default defineConfig({
   site,
+  base: '/game-design-portfolio',
   output: 'static',
-  // TODO: if deploying to a GitHub Pages project repo, also set base: '/repo-name'
 });

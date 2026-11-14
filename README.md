@@ -38,7 +38,7 @@ npx astro check    # verifica tipos e erros
 
 O build gera arquivos estáticos em `dist/`.
 
-**Primeiro passo de qualquer deploy: defina a URL final do site** (`SITE_URL` ou `site` em `astro.config.mjs`). Sem isso, links canônicos e Open Graph apontam para example.com. Se publicar em um subcaminho (GitHub Pages de projeto), defina também `base: '/nome-do-repo'`; todos os links internos já respeitam o `base`.
+O site está publicado em https://awkner.github.io/game-design-portfolio/ (GitHub Pages de projeto). `site` e `base` já estão configurados em `astro.config.mjs`; `SITE_URL` pode sobrescrever o `site`. Todos os links internos respeitam o `base`.
 
-- **Netlify**: conecte o repositório, comando de build `npm run build`, pasta de publicação `dist`. Atualize `site` em `astro.config.mjs` com a URL do Netlify.
-- **GitHub Pages**: o workflow `.github/workflows/deploy.yml` já está pronto (roda a cada push em `main` ou manualmente, usando `withastro/action` e `actions/deploy-pages`). Basta ativar Pages com origem "GitHub Actions" nas configurações do repositório; para definir `SITE_URL`, descomente o bloco `env` no workflow. Defina `site` como `https://SEU-USUARIO.github.io`; se o repositório não for `SEU-USUARIO.github.io`, defina também `base: '/nome-do-repo'`. Guia: https://docs.astro.build/en/guides/deploy/github/
+- **Netlify**: conecte o repositório, comando de build `npm run build`, pasta de publicação `dist`. Ao usar Netlify, ajuste `site` e remova o `base` em `astro.config.mjs`.
+- **GitHub Pages** (atual): o workflow `.github/workflows/deploy.yml` publica o site a cada push em `main` (ou manualmente). Nas configurações do repositório, a origem do Pages deve ser "GitHub Actions". Guia: https://docs.astro.build/en/guides/deploy/github/
