@@ -6,7 +6,7 @@ const allowedEmbed = /^https:\/\/(www\.youtube\.com\/embed\/|www\.youtube-nocook
 
 const allowedItchEmbed = /^https:\/\/itch\.io\/embed-upload\/[\w-]+([/?#].*)?$/;
 
-export const projectStatuses = ['released', 'prototype', 'game-jam', 'in-development', 'unreleased', 'redesign', 'paper-prototype'] as const;
+export const projectStatuses = ['released', 'prototype', 'playable', 'game-jam', 'in-development', 'unreleased', 'redesign', 'paper-prototype'] as const;
 
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
@@ -28,6 +28,7 @@ const projects = defineCollection({
       coverAlt: z.string(),
       coverCaption: z.string().optional(),
       tags: z.array(z.string()),
+      disciplines: z.array(z.enum(['Systems Design', 'Combat Design', 'Balancing', 'Information Design', 'Level Design', 'Narrative Design', 'Game Feel', 'Multiplayer Design'])).max(4).optional(),
       featured: z.boolean().default(false),
       order: z.number().optional(),
       video: z

@@ -6,8 +6,6 @@ export const siteConfig = {
   specialty: 'Game Designer',
   // Short tagline shown in the home hero
   tagline: 'Game designer across systems (tactics), rhythm combat with narrative, and asymmetric multiplayer, with 13+ years in game development.',
-  // Availability badge. Leave empty ('') to hide it.
-  availability: 'Open to game design roles',
   languages: ['Portuguese (native)', 'English (fluent)'],
   description: 'Game design portfolio: systems design, rhythm combat and asymmetric multiplayer case studies, plus 13+ years of game development experience.',
   email: 'brunosbriseno@gmail.com',
@@ -24,6 +22,7 @@ export const siteConfig = {
 export const statusLabels = {
   released: 'Released',
   prototype: 'Prototype',
+  playable: 'Playable prototype',
   'game-jam': 'Game jam',
   'in-development': 'In development',
   unreleased: 'Unreleased',

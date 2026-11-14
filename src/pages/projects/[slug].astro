@@ -2,7 +2,6 @@
 import { getCollection, render } from 'astro:content';
 import { Image, getImage } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { statusLabels } from '../../site.config';
 import { url } from '../../utils/url';
 
 export async function getStaticPaths() {
@@ -45,12 +44,7 @@ const og = await getImage({ src: data.cover, width: 1200, height: 630, fit: 'cov
           <div><dt>What I did</dt><dd><ul class="contribution">{data.contribution.map((c) => <li>{c}</li>)}</ul></dd></div>
         )}
         {data.aiDisclosure && <div class="ai-note"><dt>AI use</dt><dd>{data.aiDisclosure}</dd></div>}
-        <div><dt>Team</dt><dd>{data.teamSize === undefined ? 'Not specified' : data.teamSize === 1 ? 'Solo' : `${data.teamSize} people`}</dd></div>
-        {data.duration && <div><dt>Duration</dt><dd>{data.duration}</dd></div>}
         <div><dt>Tools</dt><dd>{data.tools.join(', ')}</dd></div>
-        {data.platform && data.platform.length > 0 && <div><dt>Platform</dt><dd>{data.platform.join(', ')}</dd></div>}
-        <div><dt>Status</dt><dd><span class={`status status-${data.status}`}>{statusLabels[data.status]}</span></dd></div>
-        <div><dt>Year</dt><dd>{data.year}</dd></div>
       </dl>
       {data.playUrl && <a class="button" href={data.playUrl} rel="noopener" target="_blank">Play the game<span class="sr-only"> (opens in new tab)</span></a>}
     </section>
@@ -78,3 +72,14 @@ const og = await getImage({ src: data.cover, width: 1200, height: 630, fit: 'cov
     <ul class="tags">{data.tags.map((t) => <li>{t}</li>)}</ul>
   </article>
 </BaseLayout>
+
+<script>
+  const setTitle = (d: HTMLDetailsElement) => {
+    const s = d.querySelector(':scope > summary');
+    if (s) s.setAttribute('title', d.open ? 'Click to collapse' : 'Click to expand');
+  };
+  document.querySelectorAll<HTMLDetailsElement>('.prose details').forEach((d) => {
+    setTitle(d);
+    d.addEventListener('toggle', () => setTitle(d));
+  });
+</script>

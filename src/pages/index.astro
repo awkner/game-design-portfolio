@@ -20,16 +20,8 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
       <div class="hero-copy">
         <h1>{siteConfig.ownerName} &mdash; <span class="mark">{siteConfig.specialty}</span></h1>
         <p class="lead">{siteConfig.tagline}</p>
-        {siteConfig.availability && <p class="badge">{siteConfig.availability}</p>}
       </div>
-      <svg class="hero-die" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-        <rect class="face" x="8" y="8" width="84" height="84" rx="16" stroke-width="5" />
-        <circle class="pip" cx="30" cy="30" r="8" />
-        <circle class="pip" cx="50" cy="50" r="8" />
-        <circle class="pip" cx="70" cy="70" r="8" />
-        <circle class="pip" cx="70" cy="30" r="8" />
-        <circle class="pip" cx="30" cy="70" r="8" />
-      </svg>
+      <svg class="hero-die" viewBox="0 0 224 159" aria-hidden="true" focusable="false"><path class="sl" d="M8.1 84L112 144L112 153L8.1 93Z"/><path class="sr" d="M215.9 84L112 144L112 153L215.9 93Z"/><path class="st" d="M112 24L215.9 84L112 144L8.1 84Z"/><path class="shadow" d="M78.2 58.5L135.4 91.5L99 112.5L41.9 79.5Z"/><path class="shadow" d="M131.9 76.9L168.5 67L186.7 77.5L203.8 98.6L167.2 108.5L149 98Z"/><path class="al" d="M41.9 37.5L78.2 58.5L78.2 100.5L41.9 79.5Z"/><path class="ar" d="M114.6 37.5L78.2 58.5L78.2 100.5L114.6 79.5Z"/><path class="at" d="M78.2 16.5L114.6 37.5L78.2 58.5L41.9 37.5Z"/><g class="pip ap" transform="matrix(36.4 21 -36.4 21 78.2 16.5)"><circle cx="0.5" cy="0.5" r=".1"/></g><g class="pip ap" transform="matrix(36.4 21 0 42 41.9 37.5)"><circle cx="0.28" cy="0.28" r=".1"/><circle cx="0.72" cy="0.72" r=".1"/></g><g class="pip ap" transform="matrix(-36.4 21 0 42 114.6 37.5)"><circle cx="0.25" cy="0.25" r=".1"/><circle cx="0.5" cy="0.5" r=".1"/><circle cx="0.75" cy="0.75" r=".1"/></g><path class="bl" d="M131.9 43.9L149 65L149 98L131.9 76.9Z"/><path class="br" d="M185.6 55.1L149 65L149 98L185.6 88.1Z"/><path class="bt" d="M168.5 34L185.6 55.1L149 65L131.9 43.9Z"/><g class="pip bp" transform="matrix(17.1 21.1 -36.6 9.9 168.5 34)"><circle cx="0.25" cy="0.25" r=".1"/><circle cx="0.75" cy="0.25" r=".1"/><circle cx="0.5" cy="0.5" r=".1"/><circle cx="0.25" cy="0.75" r=".1"/><circle cx="0.75" cy="0.75" r=".1"/></g><g class="pip bp" transform="matrix(17.1 21.1 0 33 131.9 43.9)"><circle cx="0.28" cy="0.25" r=".1"/><circle cx="0.28" cy="0.5" r=".1"/><circle cx="0.28" cy="0.75" r=".1"/><circle cx="0.72" cy="0.25" r=".1"/><circle cx="0.72" cy="0.5" r=".1"/><circle cx="0.72" cy="0.75" r=".1"/></g><g class="pip bp" transform="matrix(-36.6 9.9 0 33 185.6 55.1)"><circle cx="0.28" cy="0.28" r=".1"/><circle cx="0.72" cy="0.28" r=".1"/><circle cx="0.28" cy="0.72" r=".1"/><circle cx="0.72" cy="0.72" r=".1"/></g></svg>
     </div>
   </section>
   <section id="projects" aria-labelledby="projects-title">

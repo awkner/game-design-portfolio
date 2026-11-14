@@ -36,7 +36,8 @@ Os dados do currículo estão em `src/data/resume.ts`. A página `/resume/print/
 
 Frontmatter (campos novos além dos listados acima):
 
-- `status` (obrigatório): `released`, `prototype`, `game-jam`, `in-development`, `unreleased`, `redesign` ou `paper-prototype`. Aparece como rótulo no cartão e na caixa de resumo.
+- `disciplines` (opcional, até 4): disciplinas de design mostradas como etiquetas coloridas no cartão. Valores permitidos: `Systems Design`, `Combat Design`, `Balancing`, `Information Design`, `Level Design`, `Narrative Design`, `Game Feel`, `Multiplayer Design` (um valor fora da lista quebra o build).
+- `status` (obrigatório): `released`, `prototype`, `playable` (rótulo "Playable prototype"), `game-jam`, `in-development`, `unreleased`, `redesign` ou `paper-prototype`. Aparece só como rótulo no cartão da página inicial.
 - `teamSize`: número de pessoas (`1` = solo). `platform`: lista (`[PC, Web]`). `contribution`: lista de itens do que você fez (aparece na caixa de resumo).
 - `itchEmbed`: URL de embed do itch.io, somente `https://itch.io/embed-upload/...`. O `video` serve de alternativa se o build não abrir.
 
@@ -54,7 +55,7 @@ Os três projetos (`diceforce.md`, `beatdown-remix.md`, `roblox-anomaly.md`) usa
 
 ## Onde editar as configurações
 
-- `src/site.config.ts`: nome do site, seu nome, `specialty`, tagline, `availability` (vazio esconde o selo), `languages`, `ogImage` (imagem 1200x630 em `public/`), `lastUpdated` (`'AAAA-MM'`, manual: atualize quando os projetos mudarem; aparece como "Last updated" no rodapé; o ano do © é o do build), e-mail, LinkedIn, ArtStation (`artstation`) e link do currículo. Procure pelos comentários `TODO`.
+- `src/site.config.ts`: nome do site, seu nome, `specialty`, tagline, `languages`, `ogImage` (imagem 1200x630 em `public/`), `lastUpdated` (`'AAAA-MM'`, manual: atualize quando os projetos mudarem; aparece como "Last updated" no rodapé; o ano do © é o do build), e-mail, LinkedIn, ArtStation (`artstation`) e link do currículo. Procure pelos comentários `TODO`.
 - `astro.config.mjs`: o `site` vem da variável de ambiente `SITE_URL` (ou do valor placeholder no arquivo). O build avisa no console enquanto ainda contiver `example.com`.
 - `src/pages/about.astro`: texto da página About. Para o currículo, coloque `resume.pdf` em `public/` e defina `resumeUrl: '/resume.pdf'` em `site.config.ts`.
 - `src/styles/global.css`: cores e tipografia ficam nas variáveis CSS no topo do arquivo.

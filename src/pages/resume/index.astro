@@ -1,14 +1,10 @@
 ---
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { siteConfig, statusLabels } from '../../site.config';
-import { header, profile, titleNote, projectsHeading, projects, jobs, skills, education, stripScheme } from '../../data/resume';
+import { siteConfig } from '../../site.config';
+import { header, profile, projectsHeading, projects, jobs, skills, education, stripScheme } from '../../data/resume';
 import { url } from '../../utils/url';
 
 const resumeHref = siteConfig.resumeUrl.startsWith('/') ? url(siteConfig.resumeUrl) : siteConfig.resumeUrl;
-const entries = await getCollection('projects');
-const cards = projects.map((p) => ({ ...p, entry: entries.find((e) => e.id === p.slug) }));
 ---
 
 <BaseLayout title="Resume" description={`Resume of ${siteConfig.ownerName}, game designer: design projects, experience, skills and education.`}>
@@ -36,32 +32,21 @@ const cards = projects.map((p) => ({ ...p, entry: entries.find((e) => e.id === p
 
   <section class="rs-section">
     <p class="rs-profile">{profile}</p>
-    <p class="badge rs-note">{titleNote}</p>
   </section>
 
   <section class="rs-section" aria-labelledby="rs-projects">
     <h2 id="rs-projects">{projectsHeading.title}</h2>
     <p class="rs-sub">{projectsHeading.sub}</p>
-    <div class="grid rs-grid">
-      {cards.map((p) => (
-        <article class="card rs-card">
-          {p.entry && (
-            <a href={url(`/projects/${p.slug}`)} class="rs-cover-link" tabindex="-1" aria-hidden="true">
-              <Image src={p.entry.data.cover} alt="" widths={[400, 800]} sizes="(min-width: 700px) 360px, 100vw" class="card-img" />
-            </a>
-          )}
-          <div class="card-body">
-            <h3><a href={url(`/projects/${p.slug}`)}>{p.title}</a></h3>
-            <p class="card-meta">
-              {p.entry && <span class={`status status-${p.entry.data.status}`}>{statusLabels[p.entry.data.status]}</span>}
-              <span class="card-role">{p.meta}</span>
-            </p>
-            <ul class="rs-points">{p.points.map((pt) => <li>{pt}</li>)}</ul>
-            <p class="rs-more"><a href={url(`/projects/${p.slug}`)}>Read the case study<span class="sr-only"> for {p.title}</span> &rarr;</a></p>
-          </div>
-        </article>
+    <ol class="rs-timeline">
+      {projects.map((p) => (
+        <li class="rs-job">
+          <h3><a href={url(`/projects/${p.slug}`)}>{p.title}</a></h3>
+          <p class="rs-when">{p.meta}</p>
+          <p class="rs-context">{p.blurb}</p>
+          <ul class="rs-points">{p.points.map((pt) => <li>{pt}</li>)}</ul>
+        </li>
       ))}
-    </div>
+    </ol>
   </section>
 
   <section class="rs-section" aria-labelledby="rs-exp">
@@ -81,7 +66,7 @@ const cards = projects.map((p) => ({ ...p, entry: entries.find((e) => e.id === p
           {j.games?.some((g) => g.note) && <p class="rs-context">{j.games.filter((g) => g.note).map((g) => `${g.title}: ${g.note}`).join('. ')}.</p>}
           {j.design && (
             <div class="rs-design">
-              <span class="rs-tag">Design contributions (uncredited)</span>
+              <span class="rs-tag">Design contributions</span>
               <p>{j.design}</p>
             </div>
           )}
@@ -134,15 +119,10 @@ const cards = projects.map((p) => ({ ...p, entry: entries.find((e) => e.id === p
   .rs-section h2 { margin: 0 0 0.2rem; display: inline-block; padding-bottom: 0.15em; border-bottom: 3px solid var(--orange); }
   .rs-sub { margin: 0.3rem 0 1rem; color: var(--muted); font-size: 0.95rem; }
   .rs-profile { max-width: 70ch; margin: 0 0 1rem; }
-  .rs-note { font-size: 0.9rem; }
-  .rs-grid { margin-top: 0.5rem; }
-  .rs-cover-link { display: block; }
-  .rs-card .card-body h3 { font-size: 1.25rem; }
-  .rs-card .card-body h3 a { color: var(--ink); text-decoration: none; }
-  .rs-card .card-body h3 a:hover { color: var(--orange-text); text-decoration: underline; }
+  .rs-job h3 a { color: var(--ink); text-decoration: none; }
+  .rs-job h3 a:hover { color: var(--orange-text); text-decoration: underline; }
   .rs-points { margin: 0.4rem 0 0; padding-left: 1.1rem; font-size: 0.95rem; color: var(--ink); }
   .rs-points li { margin: 0.25rem 0; }
-  .rs-card .card-body .rs-more { margin: 0.8rem 0 0; font-weight: 700; }
   .rs-timeline { list-style: none; margin: 1rem 0 0; padding: 0 0 0 1.5rem; border-left: 4px solid var(--line); }
   .rs-job { position: relative; margin: 0 0 1.5rem; padding: 1rem 1.1rem; background: var(--surface); border: 3px solid var(--line); border-radius: var(--radius); box-shadow: 5px 5px 0 var(--blue); }
   .rs-job::before { content: ""; position: absolute; left: calc(-1.5rem - 12px); top: 1.2rem; width: 16px; height: 16px; background: var(--orange); border: 3px solid var(--line); border-radius: 50%; }

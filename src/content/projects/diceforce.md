@@ -1,8 +1,8 @@
 ---
 title: DICEFORCE
 summary: A hex-grid tactics roguelike where each mech's actions are the faces of a die. A small set of verbs, tags and properties combine on their own, and every rule is guarded by a test.
-role: Game designer (design direction)
-aiDisclosure: Design direction, rule decisions and playtesting by me. Code, GDD drafting, bot simulations and a first UI pass by an AI assistant (Claude) working from my specs. Concept and tile art references were generated with image models.
+role: Solo game designer
+aiDisclosure: Concept, design, rule decisions, playtesting and art direction are mine. Code, GDD drafting, bot simulations and a first UI pass were done by an AI assistant (Claude) working from my specs. Concept and tile art references were generated with image models.
 status: prototype
 teamSize: 1
 platform: [PC]
@@ -16,6 +16,7 @@ duration: Since Aug 2026 (ongoing)
 year: 2026
 cover: ../../assets/projects/diceforce/cover.png
 coverAlt: DICEFORCE combat screen on a hex city map. A yellow, a blue and a red mech stand near buildings, with a die-size initiative bar at the top and three die cards at the bottom.
+disciplines: [Systems Design, Combat Design, Balancing, Information Design]
 tags: [Systems design, Tactics, Roguelike, Rule design, Balancing]
 featured: true
 order: 1
@@ -47,7 +48,7 @@ Each story below is a version, what the evidence said, and the change. Evidence 
 
 **Version.** Every enemy face carried a hand-tuned "tick" (0 to 6), and each player gesture advanced a clock.
 
-**Change.** I replaced it with one rule: the round runs in ascending order of die size. A D3 acts on 3, a D8 mech on 8. Even sizes are the player, odd sizes are enemies, so the two sides never share a slot. A two-part boss (D9 core, D5 plating) simply enters the order twice. The tick field and its 17 hand-set values are gone.
+**Change.** I replaced it with one rule: the round runs in ascending order of die size, because 17 hand-tuned ticks gave surprises such as repositioning costing you an enemy attack. A D3 acts on 3, a D8 mech on 8. Even sizes are the player, odd sizes are enemies, so the two sides never share a slot. A two-part boss (D9 core, D5 plating) simply enters the order twice. The tick field and its 17 hand-set values are gone.
 
 <details>
 <summary>How I got there: the earlier version and the evidence</summary>
@@ -75,14 +76,14 @@ A later check found an incendiary face killing a 1 HP tank before its Burning ap
 
 ### 3. Push and Pull: two clicks
 
-**Change.** Click one picks the target, click two picks the destination tile. The path comes from the line-of-effect calculation, and the fine aim inside the hex picks which way the target travels. Between two directions that both push away, the player now chooses: break the next ally's range, or drop the target on a mine.
+**Change.** Click one picks the target, click two picks the destination tile, so the player decides where the target goes instead of an internal rule. The path comes from the line-of-effect calculation, and the fine aim inside the hex picks which way the target travels. Between two directions that both push away, the player now chooses: break the next ally's range, or drop the target on a mine.
 
 <details>
 <summary>How I got there: the earlier version and the evidence</summary>
 
 **Version.** One click, with the destination decided by an internal rule.
 
-**Evidence.** Four rounds of testing broke assumptions that the AI assistant had made while implementing it. The hex line alternates direction past distance 2, so the default sent an Archer to the wrong column. The preview did not redraw inside a hex, so you could see one path and execute another. That broke the rule that preview and execution come from one function.
+**Evidence.** Four rounds of my testing broke assumptions made while implementing it. The hex line alternates direction past distance 2, so the default sent an Archer to the wrong column. The preview did not redraw inside a hex, so you could see one path and execute another. That broke the rule that preview and execution come from one function.
 
 </details>
 
@@ -94,7 +95,7 @@ A later check found an incendiary face killing a 1 HP tank before its Burning ap
 
 **Version.** A sweep of 2,400 bench matches hit the 15-round cap 74 times.
 
-**Change.** A test that asserted zero capped matches was really asserting pacing. It became "95% of matches finish within 15 rounds" (profile Equilibrado). Conclusions now have to hold across three bot profiles before I call them about the game and not about the bot.
+**Change.** I judged that a test asserting zero capped matches was really asserting pacing. It became "95% of matches finish within 15 rounds" (profile Equilibrado). Conclusions now have to hold across three bot profiles, so I can tell a fact about the game from a fact about the bot.
 
 <details>
 <summary>How I got there: the earlier version and the evidence</summary>
@@ -150,4 +151,4 @@ Process results: an audit of 25 claims in my own design doc found 9 were false a
 
 ## Credits
 
-Design: Bruno Santos Briseno. Code and doc drafting: Claude (AI assistant), from my specs. Fire and explosion flipbook VFX use a non-commercial licensed set and would be replaced with original art before any commercial use.
+Concept, design, rule decisions, playtesting and art direction: Bruno Santos Briseno. Code, GDD drafting, bot simulations and a first UI pass: Claude (AI assistant), from my specs. Fire and explosion flipbook VFX use a non-commercial licensed set and would be replaced with original art before any commercial use.

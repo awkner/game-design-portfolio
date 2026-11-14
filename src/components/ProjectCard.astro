@@ -21,6 +21,11 @@ const { data } = project;
       <h3>{data.title}</h3>
       <p class="card-meta"><span class={`status status-${data.status}`}>{statusLabels[data.status]}</span> <span class="card-role">{data.role}</span></p>
       <p>{data.summary}</p>
+      {data.disciplines && data.disciplines.length > 0 && (
+        <ul class="disciplines" aria-label="Design disciplines">
+          {data.disciplines.map((d) => <li class={`disc disc-${d.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>{d}</li>)}
+        </ul>
+      )}
     </div>
   </a>
 </article>

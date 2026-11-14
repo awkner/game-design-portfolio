@@ -16,39 +16,40 @@ export const header = {
 };
 
 export const profile =
-  "13 years shipping games, mostly as a senior 3D generalist and art lead, with informal design contributions at three studios: mechanics and tactical/RPG systems at Behold Studios, the Spirit of the Island customization system, and game concepts pitched at Kluge Interactive to partners including Apple and Nintendo. In 2026 I directed the design of three original prototypes (tactics roguelike, rhythm combat, Roblox asymmetric co-op), documented as case studies. Degree and postgraduate degree in game design and development.";
+  "13 years shipping games, mostly as a senior 3D generalist and art lead, with design contributions at three studios: mechanics and tactical/RPG systems at Behold Studios, the Spirit of the Island customization system, and game concepts pitched at Kluge Interactive to partners including Apple and Nintendo. In 2026 I designed three original prototypes as a solo designer (tactics roguelike, rhythm combat, Roblox asymmetric co-op), documented as case studies. Degree and postgraduate degree in game design and development.";
 
-export const titleNote = 'No official game designer title: the design work below was informal and uncredited.';
+export const projectsHeading = { title: 'Design projects', sub: '2026 · solo design and creative direction, AI-assisted implementation' };
 
-export const projectsHeading = { title: 'Design projects', sub: '2026 · solo design direction, AI-assisted implementation' };
-
-export type ResumeProject = { slug: string; title: string; meta: string; points: string[] };
+export type ResumeProject = { slug: string; title: string; meta: string; blurb: string; points: string[] };
 export const projects: ResumeProject[] = [
   {
-    slug: 'diceforce',
-    title: 'DICEFORCE',
-    meta: 'Hex-grid tactics roguelike · PC (Godot, C#) · Prototype · since Aug 2026',
+    slug: 'roblox-anomaly',
+    title: 'Não Tire o Olho (working title)',
+    meta: 'Solo game designer · Roblox (Luau) · Prototype · Nov 2026',
+    blurb: 'Asymmetric co-op where an invisible Ghost changes a house only where nobody is looking.',
     points: [
-      'Replaced a hand-tuned initiative clock with one rule, ascending die size, so the 17 hand-set values could be deleted. Enemy faces are shown before they act.',
-      'Set the bot-bench method and read a 2,400-match sweep: 74 hit the round cap, but 58 of them finished when given 40 rounds, so only 16 (0.7%) were real stalemates. Conclusions must now hold across three bot profiles.',
+      'Turned a spot-the-difference game into a game of work: the Ghost changes objects only where a server-checked rule (camera frustum, nine points per object, wall-aware rays, 1.5 s memory) says no Watcher is looking.',
+      'Set the rule that no check may leak which objects are altered; owned the genre research questions and ideas (AI-assisted gathering). Dropped a "no shadow" anomaly as invisible in Studio and dependent on graphics settings.',
     ],
   },
   {
     slug: 'beatdown-remix',
     title: 'BEATDOWN REMIX',
-    meta: 'Rhythm combat, call and response · Web (TypeScript) · Prototype · Sep to Nov 2026',
+    meta: 'Solo game designer · PC (TypeScript) · Prototype · Sep to Nov 2026',
+    blurb: 'Call-and-response rhythm game dressed as a fighting game.',
     points: [
-      'Replaced a pulse-reading fight loop with call and response. Replaced boss HP with finish tiers (under 20% attack score is a draw, under 70% a T.K.O., 70% or more a K.O.) after simulations showed about a 3x spread in damage between players.',
-      'Moved hit feedback to the input after a playtest found it about 170 ms late. One authored chart, 99 notes, two boss twists, deterministic engine.',
+      'Chose call and response over a pulse-reading fight loop because it teaches by demonstration. Replaced boss HP with attack-score finish tiers (draw, T.K.O., K.O.) after simulations showed about a 3x damage spread between players.',
+      'Moved hit feedback to the input after a playtest found it about 170 ms late. One authored chart, 99 notes, two boss twists.',
     ],
   },
   {
-    slug: 'roblox-anomaly',
-    title: 'Não Tire o Olho (working title)',
-    meta: 'Asymmetric co-op · Roblox (Luau) · Prototype · Nov 2026',
+    slug: 'diceforce',
+    title: 'DICEFORCE',
+    meta: 'Solo game designer · PC (Godot, C#) · Prototype · since Aug 2026',
+    blurb: "Hex-grid tactics roguelike where each mech's actions are the faces of a die.",
     points: [
-      'Turned a spot-the-difference game into a game of work: an invisible Ghost walks the house and changes objects only where no Watcher is looking, defined by a server-checked rule (camera frustum, nine points per object, wall-aware rays, 1.5 s memory).',
-      'Set the rule that no check may leak which objects are altered. Dropped a "no shadow" anomaly because it was invisible in Studio and depends on graphics settings. No outside playtest yet.',
+      'Replaced a hand-tuned initiative clock with one rule, ascending die size, deleting 17 hand-set values. Enemy faces show before they act.',
+      'Set the bot-bench method. In a 2,400-match sweep 74 hit the round cap, but 58 finished with 40 rounds, so only 16 (0.7%) were real stalemates; conclusions must hold across three bot profiles.',
     ],
   },
 ];
@@ -123,7 +124,7 @@ export const jobs: Job[] = [
 
 export const skills: [string, string[]][] = [
   ['Design', ['systems and rule design', 'tactics/RPG', 'progression and customization', 'rhythm feel and feedback', 'asymmetric multiplayer', 'playtesting and bot benches', 'design docs and rule ledgers']],
-  ['Prototyping', ['Unity', 'Godot C#', 'Roblox Studio/Luau', 'TypeScript/web', 'AI-assisted implementation from my specs']],
+  ['Prototyping', ['Unity', 'Godot C#', 'Roblox Studio/Luau', 'TypeScript', 'AI-assisted implementation from my specs']],
   ['Art', ['Blender', 'ZBrush', 'Substance', 'Maya', 'rigging and animation']],
   ['Production', ['Jira', 'Git/Plastic SCM', 'agile']],
 ];

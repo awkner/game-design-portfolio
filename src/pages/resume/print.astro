@@ -31,19 +31,21 @@ const site = Astro.site ?? new URL('https://awkner.github.io');
       {projects.map((p) => (
         <div class="r-entry">
           <h3><a href={new URL(url(`/projects/${p.slug}/`), site).href}>{p.title}</a> <span class="r-meta">{p.meta}</span></h3>
-          <ul>{p.points.map((pt) => <li>{pt}</li>)}</ul>
+          <ul>
+            {p.points.map((pt, i) => <li>{i === 0 && <em>{p.blurb} </em>}{pt}</li>)}
+          </ul>
         </div>
       ))}
     </section>
 
     <section>
-      <h2>Experience <span class="r-sub">no official game designer title; design work below was informal and uncredited</span></h2>
+      <h2>Experience</h2>
       {jobs.map((j) => (
         <div class="r-entry">
           <h3>{j.role}, {j.studio} <span class="r-meta">{j.when}</span></h3>
           <ul>
             {j.games && <li><em>Titles:</em> {gamesLine(j.games)}</li>}
-            {j.design && <li><em>Design contributions (uncredited):</em> {j.design}</li>}
+            {j.design && <li><em>Design contributions:</em> {j.design}</li>}
             {j.points.map((pt) => <li>{pt}</li>)}
           </ul>
         </div>

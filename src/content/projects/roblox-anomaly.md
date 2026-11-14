@@ -1,22 +1,24 @@
 ---
 title: Não Tire o Olho (working title)
 summary: A Roblox asymmetric co-op where Watchers tidy a house at night while an invisible Ghost changes things live, only where nobody is looking.
-role: Game designer (design direction)
-aiDisclosure: Design direction, rule decisions and test method by me. Research, ideas, simulations and all code were produced by AI agents (Claude), with a separate adversarial reviewer agent per task. I approved or rejected every proposal.
+role: Solo game designer
+aiDisclosure: The research questions, findings and ideas are mine; gathering the market research and competitive analysis of the genre was AI-assisted. The concept, hook, mechanics, rules, information design, scope, test method and art direction are mine. AI coding agents (Claude) implemented the code and ran simulations and tests under my direction, with a separate reviewer agent per task.
 status: prototype
 teamSize: 1
 platform: [Roblox (PC)]
 contribution:
-  - Defined the hook, the five-question hook filter and the test method
-  - Approved or rejected every agent proposal, and made the rule and scope decisions
+  - Concept, hook and the five-question hook filter; the research questions, findings and ideas, with AI-assisted gathering of market research and competitive analysis of the genre
+  - All mechanics, rules, information design and scope decisions, including rejecting implementation proposals that were arbitrary
   - Turned the game from a spot-the-difference game into a work game ("The Change")
   - Set the rule that no check may give a free hint about which objects are altered
+  - Test method and art direction; directed the AI agents that implemented the code and ran the tests
 tools: [Roblox Studio, Luau, Rojo, Claude (AI assistant), Blender (verification renders)]
 duration: 8-14 Nov 2026, plus earlier design research
 year: 2026
 cover: ../../assets/projects/roblox-anomaly/cover.png
 coverCaption: Blender render, not in-game
 coverAlt: Cutaway render of a small single-storey house at night, seen from above, with a living room, kitchen, bedroom and a bathroom lit from inside. The lawn and trees are dark.
+disciplines: [Multiplayer Design, Systems Design, Information Design, Level Design]
 tags: [Multiplayer, Asymmetric, Rules design, Information design, Roblox]
 featured: false
 order: 3
@@ -24,7 +26,7 @@ draft: false
 tldr:
   problem: "Anomaly games on Roblox generate anomalies with a system; I asked what happens if a player is the anomaly, live."
   decision: "A walking Ghost changes things only where a server-verified rule says nobody is looking, with no free hints."
-  evidence: "Prototype tested only by me, with agent-driven tests; a 19-hypothesis playtest kit is written but has not been run."
+  evidence: "Prototype tested only by me, with agent-run tests; a 19-hypothesis playtest kit is written but has not been run."
 ---
 
 ## The problem
@@ -43,7 +45,7 @@ The log never lists pillars. These five are reconstructed from decisions I locke
 
 ## Process & iterations
 
-My evidence is automated rules tests, review by a second agent, Studio playtests driven by an agent, and my own play. I am the only human who has played it.
+My evidence is automated rules tests, review by a second agent, Studio playtests run by an agent to my test plan, and my own play. I am the only human who has played it.
 
 ### 1. "No shadow" replaced by "Tilted"
 
@@ -79,7 +81,7 @@ My evidence is automated rules tests, review by a second agent, Studio playtests
 
 **Version.** The first mode gave the Ghost a top-down view. It clicked a room, an object, then a type, and Watchers reported with a type and an object.
 
-**Evidence.** The top-down camera made the Ghost a menu, and "room occupied" was a poor stand-in for looking. I decided the Ghost should walk, so that space and time become a cost for him.
+**Evidence.** The top-down camera made the Ghost a menu, and "room occupied" was a poor stand-in for looking. I decided the Ghost should walk, so that space and time become a cost for him and every change has to be earned.
 
 </details>
 
@@ -93,7 +95,7 @@ My evidence is automated rules tests, review by a second agent, Studio playtests
 
 ### 3. "Same answer": no free detector
 
-**Change.** Every check now answers identically for normal and altered objects. The Ghost's own position leaks through eleven side channels (body, shadow, name, footsteps, chat bubble and others), which I closed or listed. Footstep sound is handled in code but has never been heard in a real session.
+**Change.** Every check now answers identically for normal and altered objects, because any difference is a free detector the Watcher gets without paying the touch cost. The Ghost's own position leaks through eleven side channels (body, shadow, name, footsteps, chat bubble and others), which I closed or listed. Footstep sound is handled in code but has never been heard in a real session.
 
 <details>
 <summary>How I got there: the earlier version and the evidence</summary>
@@ -106,14 +108,14 @@ My evidence is automated rules tests, review by a second agent, Studio playtests
 
 ### 4. A game of work, and the rejections that shaped it
 
-**Change.** Continuous tidying: Watchers carry boxes and install items with gestures while anomalies appear. Touching an altered object before correcting it gives the Ghost a point and a random curse. Fixed furniture is "too heavy", not a special rule.
+**Change.** Continuous tidying: Watchers carry boxes and install items with gestures while anomalies appear. Touching an altered object before correcting it gives the Ghost a point and a random curse, so grabbing blindly is a gamble. Fixed furniture is "too heavy", not a special rule, because a special rule would sit outside the fiction.
 
 <details>
 <summary>How I got there: the earlier version and the evidence</summary>
 
 **Version.** After the extra-mechanics rounds, the game was "tidy first, then watch". Arriving at it was a scope cut of a cheap test that quietly became design, which is a mistake I should have marked as temporary.
 
-**Evidence.** I rejected three agent proposals because they were arbitrary: "there is no dropping", a teleport back to the pile, and "accepting the change" as a neutral choice.
+**Evidence.** I rejected three implementation proposals because they were arbitrary and would break the fiction: "there is no dropping", a teleport back to the pile, and "accepting the change" as a neutral choice.
 
 </details>
 
@@ -148,4 +150,4 @@ A playable Roblox prototype with about a dozen gameplay systems, 4 anomaly types
 
 ## Credits
 
-Design direction: Bruno Santos Briseno. Research, ideas and code: Claude (AI assistant), with a separate reviewer agent. Sound effects come from third-party packs (DailySoundsFX, ProSoundEffects, APMOfficial). I have not verified the licence terms outside the Studio.
+Research questions, findings and ideas, concept, hook, mechanics, rules, information design, scope, test method and art direction: Bruno Santos Briseno. Gathering of market research and competitive analysis, code, simulations and tests: Claude (AI assistant), under my direction, with a separate reviewer agent. Sound effects come from third-party packs (DailySoundsFX, ProSoundEffects, APMOfficial). I have not verified the licence terms outside the Studio.
