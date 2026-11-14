@@ -1,4 +1,6 @@
 ---
+import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/inter';
 import '../styles/global.css';
 import { siteConfig } from '../site.config';
 import { url } from '../utils/url';
@@ -27,6 +29,7 @@ const updated = new Date(Date.UTC(uy, um - 1, 1)).toLocaleDateString('en-US', { 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const rel = (Astro.url.pathname.startsWith(base) ? Astro.url.pathname.slice(base.length) : Astro.url.pathname).replace(/\/+$/, '') || '/';
 const projectsCurrent = rel === '/' ? 'page' : rel.startsWith('/projects') ? 'true' : undefined;
+const experienceCurrent = rel === '/experience' ? 'page' : undefined;
 const aboutCurrent = rel === '/about' ? 'page' : rel.startsWith('/about/') ? 'true' : undefined;
 ---
 
@@ -64,6 +67,7 @@ const aboutCurrent = rel === '/about' ? 'page' : rel.startsWith('/about/') ? 'tr
         <nav aria-label="Main">
           <ul class="nav">
             <li><a href={url('/#projects')} aria-current={projectsCurrent}>Projects</a></li>
+            <li><a href={url('/experience')} aria-current={experienceCurrent}>Experience</a></li>
             <li><a href={url('/about')} aria-current={aboutCurrent}>About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -81,7 +85,7 @@ const aboutCurrent = rel === '/about' ? 'page' : rel.startsWith('/about/') ? 'tr
         </div>
         <ul class="nav">
           <li><a href={siteConfig.linkedin} rel="noopener" target="_blank">LinkedIn<span class="sr-only"> (opens in new tab)</span></a></li>
-          <li><a href={siteConfig.itch} rel="noopener" target="_blank">itch.io<span class="sr-only"> (opens in new tab)</span></a></li>
+          <li><a href={siteConfig.artstation} rel="noopener" target="_blank">ArtStation<span class="sr-only"> (opens in new tab)</span></a></li>
         </ul>
       </div>
     </footer>

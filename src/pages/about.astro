@@ -4,21 +4,37 @@ import { siteConfig } from '../site.config';
 import { url } from '../utils/url';
 
 const resumeHref = siteConfig.resumeUrl.startsWith('/') ? url(siteConfig.resumeUrl) : siteConfig.resumeUrl;
-// TODO: keep this list short and relevant to your specialty.
-const tools = ['Unity', 'Unreal Engine', 'Google Sheets', 'Miro', 'Figma'];
+const tools = [
+  'Unity, Unreal Engine 5, Meta Horizon Studio, Godot, Roblox Studio',
+  'Blender, Maya, ZBrush, Substance Painter and Designer, Photoshop, Aseprite',
+  'Git, Plastic SCM, Jira, Trello, Notion, agile/scrum',
+];
 ---
 
 <BaseLayout title="About" description={`About ${siteConfig.ownerName}, ${siteConfig.specialty}.`}>
   <article class="prose page">
     <h1>About</h1>
-    {/* TODO: optional photo */}
     <p>
-      TODO: short bio. I'm {siteConfig.ownerName}, {siteConfig.specialty}. Replace this with two or
-      three sentences on your background and what you are looking for.
+      I'm Bruno, a game designer based in Brasília, Brazil. I have worked in game development for
+      more than 13 years, on shipped indie titles and in mobile VR, mostly as a 3D and pixel artist,
+      animator and art lead. Along the way I collaborated on game design, built character
+      customization systems and led a team of four 3D artists.
     </p>
+    <p>
+      I don't have a formal Game Designer credit yet, and I'd rather say so plainly. The projects on
+      this site are my design work: a systems-driven tactics roguelike, a rhythm fighting game and an
+      asymmetric multiplayer game. Each page says what I decided, what was tested and what was not.
+      My art and production history is on the <a href={url('/experience')}>Experience</a> page.
+    </p>
+    <p>I'm looking for game design roles where a background in art and production helps the team.</p>
     <h2>Tools</h2>
     <ul>
       {tools.map((t) => <li>{t}</li>)}
+    </ul>
+    <h2>Education</h2>
+    <ul>
+      <li>Postgraduate degree, Digital Game Development, Centro Universitário FMU | FIAM-FAAM (2014 to 2015)</li>
+      <li>Technologist degree (undergraduate), Digital Games, Centro Universitário IESB (2011 to 2014)</li>
     </ul>
     <h2>Languages</h2>
     <ul>
@@ -28,12 +44,11 @@ const tools = ['Unity', 'Unreal Engine', 'Google Sheets', 'Miro', 'Figma'];
     {resumeHref
       ? <p><a class="button" href={resumeHref}>Download resume (PDF)</a></p>
       : <p>Resume available on request: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>}
-    {/* TODO: add public/resume.pdf and set resumeUrl in src/site.config.ts to '/resume.pdf' */}
     <h2>Links</h2>
     <ul class="link-row">
       <li><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>
       <li><a href={siteConfig.linkedin} rel="noopener" target="_blank">LinkedIn<span class="sr-only"> (opens in new tab)</span></a></li>
-      <li><a href={siteConfig.itch} rel="noopener" target="_blank">itch.io<span class="sr-only"> (opens in new tab)</span></a></li>
+      <li><a href={siteConfig.artstation} rel="noopener" target="_blank">ArtStation<span class="sr-only"> (opens in new tab)</span></a></li>
     </ul>
   </article>
 </BaseLayout>

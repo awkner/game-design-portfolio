@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../site.config';
+import { url } from '../utils/url';
+
+type Role = { studio: string; role: string; when: string; project?: string; points: string[]; design?: string };
+const groups: { title: string; roles: Role[] }[] = [
+  {
+    title: 'Current and recent',
+    roles: [
+      {
+        studio: 'PM Studios',
+        role: 'Senior Generalist 3D Artist',
+        when: 'Mar 2026 to present',
+        project: 'Roshpit Champions 2 (unreleased, coming soon: top-down 3D action RPG for PC/Steam; 17 classes, 18 environments; team of 8)',
+        points: ['Rebuilt the legacy animation set to the current quality bar', 'Environment assembly and trim sheet authoring for the art team'],
+      },
+      {
+        studio: 'Kluge Interactive',
+        role: 'Senior Generalist 3D Artist',
+        when: 'Aug 2024 to Dec 2025',
+        project: '8 Meta Horizon experiences (mobile VR; titles not named)',
+        points: [
+          'Character modeling, rigging, environments and optimization for mobile VR hardware',
+          'High-fidelity visual targets and deck assets that supported pitches to partners such as Nintendo and Apple',
+        ],
+      },
+    ],
+  },
+  {
+    title: '1M Bits Horde',
+    roles: [
+      {
+        studio: '1M Bits Horde',
+        role: 'Senior 3D Artist (second stint)',
+        when: 'Jul 2023 to Jul 2024',
+        project: 'Nested Lands',
+        points: [
+          'Modeling, rigging and animation of realistic characters, props and environments',
+          'Clothing, accessory and hair variety for character customization',
+          'Supported 3D art direction and visual consistency',
+        ],
+      },
+      {
+        studio: '1M Bits Horde',
+        role: 'Lead 3D Artist',
+        when: '2020 to 2022',
+        project: 'Spirit of the Island (released 2022)',
+        points: [
+          'Visual direction and stylistic consistency across a team of four 3D artists',
+          'Built the character customization system: modeled, rigged and animated 40+ archetypes and dozens of interchangeable outfits and accessories',
+        ],
+        design: 'Design-adjacent: the character customization system.',
+      },
+    ],
+  },
+  {
+    title: 'Behold Studios and Armor Games Studios',
+    roles: [
+      {
+        studio: 'Behold Studios',
+        role: '3D Generalist and Pixel Artist',
+        when: 'Feb 2013 to Jul 2022',
+        project: 'Chroma Squad (2015), Galaxy of Pen & Paper (2017), Out of Space (2020), Cosplay Club',
+        points: [
+          'Core artist on award-winning indie titles, taking assets from concept to Unity implementation',
+          '3D environments, pixel art characters, UI assets and modular character systems',
+        ],
+        design: 'Design-adjacent: collaborated on game design and VFX, and structured the character customization systems for Cosplay Club.',
+      },
+      {
+        studio: 'Armor Games Studios',
+        role: 'Pixel Artist',
+        when: '2019',
+        project: 'Jet Lancer',
+        points: ['Character portraits, dialogue assets, full-screen animated cutscenes and UI support'],
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Experience" description={`Game development experience of ${siteConfig.ownerName}: roles in art, animation and production on commercial games.`}>
+  <article class="prose page">
+    <h1>Experience</h1>
+    <p>
+      These are roles in 3D art, pixel art, animation and art direction on commercial games (shipped and in production), 2013 to
+      today. None carried the title Game Designer. Where the work touched design, I say so. My own
+      design work is on the <a href={url('/#projects')}>Projects</a> page.
+    </p>
+    {groups.map((g) => (
+      <section>
+        <h2>{g.title}</h2>
+        {g.roles.map((r) => (
+          <div class="role">
+            <h3>{r.role}, {r.studio} <span class="when">{r.when}</span></h3>
+            {r.project && <p class="project">{r.project}</p>}
+            <ul>{r.points.map((p) => <li>{p}</li>)}</ul>
+            {r.design && <p class="design-note">{r.design}</p>}
+          </div>
+        ))}
+      </section>
+    ))}
+  </article>
+</BaseLayout>

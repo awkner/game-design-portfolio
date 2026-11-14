@@ -21,7 +21,10 @@ const og = await getImage({ src: data.cover, width: 1200, height: 630, fit: 'cov
     <p><a href={url('/#projects')}>&larr; All projects</a></p>
     <h1>{data.title}</h1>
     <p class="lead">{data.summary}</p>
-    <Image src={data.cover} alt={data.coverAlt} widths={[800, 1200]} sizes="(min-width: 960px) 900px, 100vw" class="project-cover" loading="eager" />
+    <figure class="cover-fig">
+      <Image src={data.cover} alt={data.coverAlt} widths={[800, 1200]} sizes="(min-width: 960px) 900px, 100vw" class="project-cover" loading="eager" />
+      {data.coverCaption && <figcaption class="cover-caption">{data.coverCaption}</figcaption>}
+    </figure>
 
     <section class="glance" aria-labelledby="glance-title">
       <h2 id="glance-title" class="sr-only">At a glance</h2>
@@ -30,6 +33,7 @@ const og = await getImage({ src: data.cover, width: 1200, height: 630, fit: 'cov
         {data.contribution && data.contribution.length > 0 && (
           <div><dt>What I did</dt><dd><ul class="contribution">{data.contribution.map((c) => <li>{c}</li>)}</ul></dd></div>
         )}
+        {data.aiDisclosure && <div class="ai-note"><dt>AI use</dt><dd>{data.aiDisclosure}</dd></div>}
         <div><dt>Team</dt><dd>{data.teamSize === undefined ? 'Not specified' : data.teamSize === 1 ? 'Solo' : `${data.teamSize} people`}</dd></div>
         {data.duration && <div><dt>Duration</dt><dd>{data.duration}</dd></div>}
         <div><dt>Tools</dt><dd>{data.tools.join(', ')}</dd></div>

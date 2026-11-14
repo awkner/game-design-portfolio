@@ -16,9 +16,21 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
 
 <BaseLayout>
   <section class="hero">
-    <h1>{siteConfig.ownerName} &mdash; {siteConfig.specialty}</h1>
-    <p class="lead">{siteConfig.tagline}</p>
-    {siteConfig.availability && <p class="badge">{siteConfig.availability}</p>}
+    <div class="hero-row">
+      <div class="hero-copy">
+        <h1>{siteConfig.ownerName} &mdash; <span class="mark">{siteConfig.specialty}</span></h1>
+        <p class="lead">{siteConfig.tagline}</p>
+        {siteConfig.availability && <p class="badge">{siteConfig.availability}</p>}
+      </div>
+      <svg class="hero-die" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+        <rect class="face" x="8" y="8" width="84" height="84" rx="16" stroke-width="5" />
+        <circle class="pip" cx="30" cy="30" r="8" />
+        <circle class="pip" cx="50" cy="50" r="8" />
+        <circle class="pip" cx="70" cy="70" r="8" />
+        <circle class="pip" cx="70" cy="30" r="8" />
+        <circle class="pip" cx="30" cy="70" r="8" />
+      </svg>
+    </div>
   </section>
   <section id="projects" aria-labelledby="projects-title">
     <h2 id="projects-title">Projects</h2>

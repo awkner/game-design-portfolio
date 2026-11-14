@@ -16,11 +16,11 @@ npx astro check    # verifica tipos e erros
 
 ## Como adicionar um novo projeto
 
-1. Copie um arquivo de `src/content/projects/` (por exemplo `project-one.md`) e renomeie. O nome do arquivo vira a URL: `meu-jogo.md` -> `/projects/meu-jogo`.
-2. Coloque a imagem de capa em `src/assets/` (PNG, JPG ou WebP, de preferência 16:9; SVG não é suportado nas capas) e aponte para ela em `cover: ../../assets/minha-capa.png`.
+1. Copie um arquivo de `src/content/projects/` (por exemplo `diceforce.md`) e renomeie. O nome do arquivo vira a URL: `meu-jogo.md` -> `/projects/meu-jogo`.
+2. Coloque a imagem de capa em `src/assets/` (PNG, JPG ou WebP, de preferência 16:9; SVG não é suportado nas capas) e aponte para ela em `cover: ../../assets/projects/meu-jogo/cover.png`.
 3. Preencha o frontmatter:
    - `title`, `summary`, `role`, `status`, `tools` (lista), `year`, `cover`, `coverAlt` (texto alternativo), `tags` (lista): obrigatórios.
-   - `duration`, `teamSize`, `platform`, `contribution`, `order`, `video`, `itchEmbed`, `playUrl`: opcionais.
+   - `duration`, `teamSize`, `platform`, `contribution`, `aiDisclosure` (uma frase sobre o uso de IA, mostrada na caixa de resumo), `order`, `video`, `itchEmbed`, `playUrl`: opcionais.
    - `featured: true` coloca o projeto antes dos demais na home; `order` define a ordem (menor primeiro).
    - `video`: apenas URL de embed https (use a URL de embed, não a do vídeo): `https://www.youtube.com/embed/ID`, `https://www.youtube-nocookie.com/embed/ID` ou `https://player.vimeo.com/video/ID`. Outros formatos falham no build.
    - `playUrl`: link para jogar (itch.io, por exemplo), somente `https://`.
@@ -45,11 +45,11 @@ A página mostra: caixa de resumo (Role, Team, Duration, Tools, Platform, Status
 6. `## What I learned / what I'd do next`
 7. `## Credits`
 
-Os dois projetos de exemplo usam essa estrutura, com marcadores `TODO` para substituir.
+Os três projetos (`diceforce.md`, `beatdown-remix.md`, `roblox-anomaly.md`) usam essa estrutura; cada um tem um comentário HTML no topo com a mídia que ainda falta capturar. A página `src/pages/experience.astro` lista a experiência profissional (editar os dados no frontmatter do próprio arquivo).
 
 ## Onde editar as configurações
 
-- `src/site.config.ts`: nome do site, seu nome, `specialty`, tagline, `availability` (vazio esconde o selo), `languages`, `ogImage` (imagem 1200x630 em `public/`), `lastUpdated` (`'AAAA-MM'`, manual: atualize quando os projetos mudarem; aparece como "Last updated" no rodapé; o ano do © é o do build), e-mail, LinkedIn, itch.io e link do currículo. Procure pelos comentários `TODO`.
+- `src/site.config.ts`: nome do site, seu nome, `specialty`, tagline, `availability` (vazio esconde o selo), `languages`, `ogImage` (imagem 1200x630 em `public/`), `lastUpdated` (`'AAAA-MM'`, manual: atualize quando os projetos mudarem; aparece como "Last updated" no rodapé; o ano do © é o do build), e-mail, LinkedIn, ArtStation (`artstation`) e link do currículo. Procure pelos comentários `TODO`.
 - `astro.config.mjs`: o `site` vem da variável de ambiente `SITE_URL` (ou do valor placeholder no arquivo). O build avisa no console enquanto ainda contiver `example.com`.
 - `src/pages/about.astro`: texto da página About. Para o currículo, coloque `resume.pdf` em `public/` e defina `resumeUrl: '/resume.pdf'` em `site.config.ts`.
 - `src/styles/global.css`: cores e tipografia ficam nas variáveis CSS no topo do arquivo.
