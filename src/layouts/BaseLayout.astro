@@ -16,7 +16,12 @@ interface Props {
 const { title, description = siteConfig.description, image, imageAlt, imageWidth, imageHeight, noindex = false } = Astro.props;
 const fullTitle = title ? `${title} | ${siteConfig.ownerName}` : siteConfig.name;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogImage = image ? new URL(image, Astro.site) : undefined;
+const ogImage = new URL(image ?? (siteConfig.ogImage.startsWith('/') ? url(siteConfig.ogImage) : siteConfig.ogImage), Astro.site);
+const ogAlt = image ? imageAlt : siteConfig.name;
+const ogW = image ? imageWidth : 1200;
+const ogH = image ? imageHeight : 630;
+const [uy, um] = siteConfig.lastUpdated.split('-').map(Number);
+const updated = new Date(Date.UTC(uy, um - 1, 1)).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
 
 // Path relative to `base`, without trailing slash ('/' for home).
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -41,11 +46,15 @@ const aboutCurrent = rel === '/about' ? 'page' : rel.startsWith('/about/') ? 'tr
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     {!noindex && <meta property="og:url" content={canonical} />}
-    {ogImage && <meta property="og:image" content={ogImage} />}
-    {ogImage && imageWidth && <meta property="og:image:width" content={String(imageWidth)} />}
-    {ogImage && imageHeight && <meta property="og:image:height" content={String(imageHeight)} />}
-    {ogImage && imageAlt && <meta property="og:image:alt" content={imageAlt} />}
-    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta property="og:image" content={ogImage} />
+    {ogW && <meta property="og:image:width" content={String(ogW)} />}
+    {ogH && <meta property="og:image:height" content={String(ogH)} />}
+    {ogAlt && <meta property="og:image:alt" content={ogAlt} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    {ogAlt && <meta name="twitter:image:alt" content={ogAlt} />}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -56,6 +65,7 @@ const aboutCurrent = rel === '/about' ? 'page' : rel.startsWith('/about/') ? 'tr
           <ul class="nav">
             <li><a href={url('/#projects')} aria-current={projectsCurrent}>Projects</a></li>
             <li><a href={url('/about')} aria-current={aboutCurrent}>About</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
       </div>
@@ -63,11 +73,13 @@ const aboutCurrent = rel === '/about' ? 'page' : rel.startsWith('/about/') ? 'tr
     <main id="main" class="container">
       <slot />
     </main>
-    <footer class="site-footer">
+    <footer class="site-footer" id="contact">
       <div class="container footer-inner">
-        <p>&copy; {new Date().getFullYear()} {siteConfig.ownerName}</p>
+        <div>
+          <p>Contact: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>
+          <p class="updated">&copy; {new Date().getFullYear()} {siteConfig.ownerName} &middot; Last updated {updated}</p>
+        </div>
         <ul class="nav">
-          <li><a href={`mailto:${siteConfig.email}`}>Email</a></li>
           <li><a href={siteConfig.linkedin} rel="noopener" target="_blank">LinkedIn<span class="sr-only"> (opens in new tab)</span></a></li>
           <li><a href={siteConfig.itch} rel="noopener" target="_blank">itch.io<span class="sr-only"> (opens in new tab)</span></a></li>
         </ul>

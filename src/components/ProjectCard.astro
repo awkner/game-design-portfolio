@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import { statusLabels } from '../site.config';
 import { url } from '../utils/url';
 
 interface Props {
@@ -15,10 +16,8 @@ const { data } = project;
     <Image src={data.cover} alt="" widths={[400, 800]} sizes="(min-width: 700px) 360px, 100vw" class="card-img" />
     <div class="card-body">
       <h3>{data.title}</h3>
+      <p class="card-meta"><span class={`status status-${data.status}`}>{statusLabels[data.status]}</span> <span class="card-role">{data.role}</span></p>
       <p>{data.summary}</p>
-      <ul class="tags">
-        {data.tags.map((t) => <li>{t}</li>)}
-      </ul>
     </div>
   </a>
 </article>

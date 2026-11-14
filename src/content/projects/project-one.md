@@ -1,6 +1,12 @@
 ---
 title: Project One
 summary: Placeholder summary for a fast-paced arcade prototype. Replace with a one or two sentence pitch.
+status: prototype
+teamSize: 1
+platform: [PC]
+contribution:
+  - Designed the core loop (TODO)
+  - Balanced the scoring system (TODO)
 role: Lead Game Designer
 tools: [Unity, Miro, Google Sheets]
 duration: 3 months
@@ -15,32 +21,43 @@ order: 1
 draft: false
 ---
 
-> Placeholder text. Replace everything below with your real case study.
+> TODO: placeholder case study. Replace everything below with your real content.
 
-## Overview
+## The problem
 
-A short description of the game, genre, platform, team size and what the project was about. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+TODO: one or two sentences on the design problem you set out to solve.
 
-## My Role
+## Goals / pillars
 
-What you were responsible for: for example core loop design, level design, balancing, documentation and playtest coordination.
+- TODO: pillar one (what should the player feel?)
+- TODO: pillar two
+- TODO: pillar three
 
-## Design Goals
+## Process & iterations
 
-- Goal one: what experience should the player have?
-- Goal two: which constraints shaped the design?
-- Goal three: how would success be measured?
+TODO: two to four steps in the form "Version, playtest evidence, change".
 
-## Process
+1. **v0.1:** TODO what the first version did. **Playtest evidence:** TODO what testers did or said. **Change:** TODO what you changed and why.
+2. **v0.2:** TODO. **Playtest evidence:** TODO. **Change:** TODO.
+3. **v0.3:** TODO. **Playtest evidence:** TODO. **Change:** TODO.
 
-Describe your workflow: research, paper prototypes, documents, iteration cycles, playtests and the tools you used. Add images or diagrams here.
+## Design artifacts
 
-## Challenges & Solutions
+<figure>
+  <!-- TODO: replace with a real image (import it or use a path under /public) or a spreadsheet excerpt. -->
+  <p>TODO: captioned image or spreadsheet excerpt goes here.</p>
+  <figcaption>TODO: caption explaining what the artifact shows and what decision it supported.</figcaption>
+</figure>
 
-**Challenge:** Something that did not work at first.
+## Result
 
-**Solution:** What you changed and why, with evidence from playtests or metrics.
+TODO: what shipped or was demonstrated, with numbers if you have them.
 
-## Outcome / Learnings
+## What I learned / what I'd do next
 
-What shipped, what you would do differently, and what you learned.
+- TODO: one lesson.
+- TODO: what you would do next.
+
+## Credits
+
+TODO: team members and roles, plus third-party assets.

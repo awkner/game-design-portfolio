@@ -19,17 +19,37 @@ npx astro check    # verifica tipos e erros
 1. Copie um arquivo de `src/content/projects/` (por exemplo `project-one.md`) e renomeie. O nome do arquivo vira a URL: `meu-jogo.md` -> `/projects/meu-jogo`.
 2. Coloque a imagem de capa em `src/assets/` (PNG, JPG ou WebP, de preferência 16:9; SVG não é suportado nas capas) e aponte para ela em `cover: ../../assets/minha-capa.png`.
 3. Preencha o frontmatter:
-   - `title`, `summary`, `role`, `tools` (lista), `year`, `cover`, `coverAlt` (texto alternativo), `tags` (lista): obrigatórios.
-   - `duration`, `order`, `video`, `playUrl`: opcionais.
+   - `title`, `summary`, `role`, `status`, `tools` (lista), `year`, `cover`, `coverAlt` (texto alternativo), `tags` (lista): obrigatórios.
+   - `duration`, `teamSize`, `platform`, `contribution`, `order`, `video`, `itchEmbed`, `playUrl`: opcionais.
    - `featured: true` coloca o projeto antes dos demais na home; `order` define a ordem (menor primeiro).
    - `video`: apenas URL de embed https (use a URL de embed, não a do vídeo): `https://www.youtube.com/embed/ID`, `https://www.youtube-nocookie.com/embed/ID` ou `https://player.vimeo.com/video/ID`. Outros formatos falham no build.
    - `playUrl`: link para jogar (itch.io, por exemplo), somente `https://`.
    - `draft: true` esconde o projeto do site.
-4. Escreva o case study no corpo do Markdown (Overview, My Role, Design Goals, Process, Challenges & Solutions, Outcome / Learnings).
+4. Escreva o case study no corpo do Markdown (veja a seção abaixo).
+
+## Writing a case study
+
+Frontmatter (campos novos além dos listados acima):
+
+- `status` (obrigatório): `released`, `prototype`, `game-jam`, `in-development`, `unreleased`, `redesign` ou `paper-prototype`. Aparece como rótulo no cartão e na caixa de resumo.
+- `teamSize`: número de pessoas (`1` = solo). `platform`: lista (`[PC, Web]`). `contribution`: lista de itens do que você fez (aparece na caixa de resumo).
+- `itchEmbed`: URL de embed do itch.io, somente `https://itch.io/embed-upload/...`. O `video` serve de alternativa se o build não abrir.
+
+A página mostra: caixa de resumo (Role, Team, Duration, Tools, Platform, Status, Year, link para jogar), embed/vídeo com carregamento adiado e depois o corpo do Markdown. Estrutura recomendada do corpo, em "eu", curta:
+
+1. `## The problem`
+2. `## Goals / pillars`
+3. `## Process & iterations`: 2 a 4 etapas "versão, evidência de playtest, mudança"
+4. `## Design artifacts`: imagem legendada, planilha ou mapa
+5. `## Result`
+6. `## What I learned / what I'd do next`
+7. `## Credits`
+
+Os dois projetos de exemplo usam essa estrutura, com marcadores `TODO` para substituir.
 
 ## Onde editar as configurações
 
-- `src/site.config.ts`: nome do site, seu nome, tagline, e-mail, LinkedIn, itch.io e link do currículo. Procure pelos comentários `TODO`.
+- `src/site.config.ts`: nome do site, seu nome, `specialty`, tagline, `availability` (vazio esconde o selo), `languages`, `ogImage` (imagem 1200x630 em `public/`), `lastUpdated` (`'AAAA-MM'`, manual: atualize quando os projetos mudarem; aparece como "Last updated" no rodapé; o ano do © é o do build), e-mail, LinkedIn, itch.io e link do currículo. Procure pelos comentários `TODO`.
 - `astro.config.mjs`: o `site` vem da variável de ambiente `SITE_URL` (ou do valor placeholder no arquivo). O build avisa no console enquanto ainda contiver `example.com`.
 - `src/pages/about.astro`: texto da página About. Para o currículo, coloque `resume.pdf` em `public/` e defina `resumeUrl: '/resume.pdf'` em `site.config.ts`.
 - `src/styles/global.css`: cores e tipografia ficam nas variáveis CSS no topo do arquivo.

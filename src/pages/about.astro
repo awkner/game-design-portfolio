@@ -4,27 +4,36 @@ import { siteConfig } from '../site.config';
 import { url } from '../utils/url';
 
 const resumeHref = siteConfig.resumeUrl.startsWith('/') ? url(siteConfig.resumeUrl) : siteConfig.resumeUrl;
+// TODO: keep this list short and relevant to your specialty.
+const tools = ['Unity', 'Unreal Engine', 'Google Sheets', 'Miro', 'Figma'];
 ---
 
-<BaseLayout title="About" description={`About ${siteConfig.ownerName}, game designer.`}>
+<BaseLayout title="About" description={`About ${siteConfig.ownerName}, ${siteConfig.specialty}.`}>
   <article class="prose page">
     <h1>About</h1>
+    {/* TODO: optional photo */}
     <p>
-      Placeholder bio. Hi, I'm {siteConfig.ownerName}, a game designer interested in systems, level design and
-      player experience. Replace this with a short, personal summary of your background and what you are looking for.
+      TODO: short bio. I'm {siteConfig.ownerName}, {siteConfig.specialty}. Replace this with two or
+      three sentences on your background and what you are looking for.
     </p>
-    <h2>Skills</h2>
+    <h2>Tools</h2>
     <ul>
-      <li>Systems and economy design</li>
-      <li>Level design and prototyping</li>
-      <li>Documentation and playtesting</li>
+      {tools.map((t) => <li>{t}</li>)}
+    </ul>
+    <h2>Languages</h2>
+    <ul>
+      {siteConfig.languages.map((l) => <li>{l}</li>)}
     </ul>
     <h2>Resume</h2>
     {resumeHref
       ? <p><a class="button" href={resumeHref}>Download resume (PDF)</a></p>
-      : <p>Resume coming soon.</p>}
+      : <p>Resume available on request: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>}
     {/* TODO: add public/resume.pdf and set resumeUrl in src/site.config.ts to '/resume.pdf' */}
-    <h2>Contact</h2>
-    <p>See the links in the footer, or write to <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.</p>
+    <h2>Links</h2>
+    <ul class="link-row">
+      <li><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>
+      <li><a href={siteConfig.linkedin} rel="noopener" target="_blank">LinkedIn<span class="sr-only"> (opens in new tab)</span></a></li>
+      <li><a href={siteConfig.itch} rel="noopener" target="_blank">itch.io<span class="sr-only"> (opens in new tab)</span></a></li>
+    </ul>
   </article>
 </BaseLayout>

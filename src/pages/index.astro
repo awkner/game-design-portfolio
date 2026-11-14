@@ -16,10 +16,9 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
 
 <BaseLayout>
   <section class="hero">
-    <p class="eyebrow">Game Design Portfolio</p>
-    <h1>Hi, I'm {siteConfig.ownerName}.</h1>
+    <h1>{siteConfig.ownerName} &mdash; {siteConfig.specialty}</h1>
     <p class="lead">{siteConfig.tagline}</p>
-    <p><a class="button" href="#projects">See my work</a></p>
+    {siteConfig.availability && <p class="badge">{siteConfig.availability}</p>}
   </section>
   <section id="projects" aria-labelledby="projects-title">
     <h2 id="projects-title">Projects</h2>
