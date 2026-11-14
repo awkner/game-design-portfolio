@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../site.config';
+import { url } from '../utils/url';
+
+const resumeHref = siteConfig.resumeUrl.startsWith('/') ? url(siteConfig.resumeUrl) : siteConfig.resumeUrl;
+---
+
+<BaseLayout title="About" description={`About ${siteConfig.ownerName}, game designer.`}>
+  <article class="prose page">
+    <h1>About</h1>
+    <p>
+      Placeholder bio. Hi, I'm {siteConfig.ownerName}, a game designer interested in systems, level design and
+      player experience. Replace this with a short, personal summary of your background and what you are looking for.
+    </p>
+    <h2>Skills</h2>
+    <ul>
+      <li>Systems and economy design</li>
+      <li>Level design and prototyping</li>
+      <li>Documentation and playtesting</li>
+    </ul>
+    <h2>Resume</h2>
+    {resumeHref
+      ? <p><a class="button" href={resumeHref}>Download resume (PDF)</a></p>
+      : <p>Resume coming soon.</p>}
+    {/* TODO: add public/resume.pdf and set resumeUrl in src/site.config.ts to '/resume.pdf' */}
+    <h2>Contact</h2>
+    <p>See the links in the footer, or write to <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.</p>
+  </article>
+</BaseLayout>

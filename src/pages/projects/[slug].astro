@@ -1,0 +1,48 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { url } from '../../utils/url';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects', ({ data }) => !data.draft);
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const { data } = project;
+const { Content } = await render(project);
+const og = await getImage({ src: data.cover, width: 1200, format: 'jpg', quality: 80 });
+---
+
+<BaseLayout title={data.title} description={data.summary} image={og.src} imageAlt={data.coverAlt} imageWidth={og.attributes.width} imageHeight={og.attributes.height}>
+  <article class="project">
+    <p><a href={url('/#projects')}>&larr; All projects</a></p>
+    <h1>{data.title}</h1>
+    <p class="lead">{data.summary}</p>
+    <Image src={data.cover} alt={data.coverAlt} widths={[800, 1200]} sizes="(min-width: 960px) 900px, 100vw" class="project-cover" loading="eager" />
+
+    <div class="project-layout">
+      <div class="prose">
+        {data.video && (
+          <div class="video">
+            <iframe src={data.video} title={`${data.title} video`} loading="lazy" allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+          </div>
+        )}
+        <Content />
+      </div>
+      <aside class="meta" aria-label="Project details">
+        <dl>
+          <dt>Role</dt><dd>{data.role}</dd>
+          <dt>Tools</dt><dd>{data.tools.join(', ')}</dd>
+          {data.duration && <><dt>Duration</dt><dd>{data.duration}</dd></>}
+          <dt>Year</dt><dd>{data.year}</dd>
+        </dl>
+        <ul class="tags">{data.tags.map((t) => <li>{t}</li>)}</ul>
+        {data.playUrl && <a class="button" href={data.playUrl} rel="noopener" target="_blank">Play the game<span class="sr-only"> (opens in new tab)</span></a>}
+      </aside>
+    </div>
+  </article>
+</BaseLayout>
