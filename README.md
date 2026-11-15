@@ -57,7 +57,7 @@ Os três projetos (`diceforce.md`, `beatdown-remix.md`, `roblox-anomaly.md`) usa
 
 - `src/site.config.ts`: nome do site, seu nome, `specialty`, tagline, `languages`, `ogImage` (imagem 1200x630 em `public/`), `lastUpdated` (`'AAAA-MM'`, manual: atualize quando os projetos mudarem; aparece como "Last updated" no rodapé; o ano do © é o do build), e-mail, LinkedIn, ArtStation (`artstation`) e link do currículo. Procure pelos comentários `TODO`.
 - `astro.config.mjs`: o `site` vem da variável de ambiente `SITE_URL` (ou do valor placeholder no arquivo). O build avisa no console enquanto ainda contiver `example.com`.
-- `src/pages/about.astro`: texto da página About. Para o currículo, coloque `resume.pdf` em `public/` e defina `resumeUrl: '/resume.pdf'` em `site.config.ts`.
+- Para o currículo, coloque `resume.pdf` em `public/` e defina `resumeUrl: '/resume.pdf'` em `site.config.ts`.
 - `src/styles/global.css`: cores e tipografia ficam nas variáveis CSS no topo do arquivo.
 
 ## Deploy

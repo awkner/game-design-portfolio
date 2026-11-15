@@ -18,5 +18,5 @@ export default defineConfig({
   site,
   base,
   output: 'static',
-  redirects: { '/experience': `${base}/resume/` },
+  redirects: { '/experience': `${base}/resume/`, '/about': `${base}/resume/` },
 });
