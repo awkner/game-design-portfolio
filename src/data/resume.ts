@@ -16,7 +16,7 @@ export const header = {
 };
 
 export const profile =
-  "13 years shipping games, mostly as a senior 3D generalist and art lead, with design contributions at three studios: mechanics and tactical/RPG systems at Behold Studios, the Spirit of the Island customization system, and game concepts pitched at Kluge Interactive to partners including Apple and Nintendo. In 2026 I designed three original prototypes as a solo designer (tactics roguelike, rhythm combat, Roblox asymmetric co-op), documented as case studies. Degree and postgraduate degree in game design and development.";
+  "13 years shipping games, mostly as a senior 3D generalist and art lead, with design contributions at three studios: mechanics and tactical/RPG systems at Behold Studios, the Spirit of the Island customization system, and game concepts pitched at Kluge Interactive to major platform holders. In 2026 I designed three original prototypes as a solo designer (tactics roguelike, rhythm combat, Roblox asymmetric co-op), documented as case studies. Degree and postgraduate degree in game design and development.";
 
 export const projectsHeading = { title: 'Design projects', sub: '2026 · solo design and creative direction, AI-assisted implementation' };
 
@@ -81,9 +81,9 @@ export const jobs: Job[] = [
     studio: 'Kluge Interactive',
     when: 'Aug 2024 to Dec 2025',
     webContext: '8 Meta Horizon experiences for mobile VR (titles not named).',
-    design: 'Designed game concepts, rapid prototypes and pitch material for new projects, including pitches to Apple and Nintendo.',
+    design: 'Designed game concepts, rapid prototypes and pitch material for new projects, including pitches to major platform holders.',
     points: ['Art: characters, rigging, environments and optimization for 8 Meta Horizon experiences on mobile VR.'],
-    webPoints: ['Built high-fidelity visual targets and deck assets that supported pitches to partners such as Nintendo and Apple.'],
+    webPoints: ['Built high-fidelity visual targets and deck assets that supported pitches to major platform holders.'],
   },
   {
     role: 'Lead 3D Artist / Senior 3D Artist',
