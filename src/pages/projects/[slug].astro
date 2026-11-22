@@ -26,26 +26,21 @@ const og = await getImage({ src: data.cover, width: 1200, height: 630, fit: 'cov
       {data.coverCaption && <figcaption class="cover-caption">{data.coverCaption}</figcaption>}
     </figure>
 
-    {data.tldr && (
-      <section class="tldr" aria-labelledby="tldr-title">
-        <h2 id="tldr-title" class="tldr-title">In 30 seconds</h2>
-        <ul class="tldr-list" role="list">
-          <li><span class="tldr-label">Problem</span> {data.tldr.problem}</li>
-          <li><span class="tldr-label">Key decision</span> {data.tldr.decision}</li>
-          <li><span class="tldr-label">Evidence</span> {data.tldr.evidence}</li>
-        </ul>
-      </section>
-    )}
-
     <section class="glance" aria-labelledby="glance-title">
       <h2 id="glance-title" class="sr-only">At a glance</h2>
       <dl>
         <div><dt>Role</dt><dd>{data.role}</dd></div>
-        {data.contribution && data.contribution.length > 0 && (
+        {data.platform && data.platform.length > 0 && (
+          <div><dt>Platform</dt><dd>{data.platform.join(', ')}</dd></div>
+        )}
+        {data.duration && (
+          <div><dt>Timeline</dt><dd>{data.duration}</dd></div>
+        )}
+        {data.teamSize && data.teamSize > 1 && data.contribution && data.contribution.length > 0 && (
           <div><dt>What I did</dt><dd><ul class="contribution">{data.contribution.map((c) => <li>{c}</li>)}</ul></dd></div>
         )}
-        {data.aiDisclosure && <div class="ai-note"><dt>AI use</dt><dd>{data.aiDisclosure}</dd></div>}
         <div><dt>Tools</dt><dd>{data.tools.join(', ')}</dd></div>
+        {data.aiDisclosure && <div class="ai-note"><dt>AI use</dt><dd>{data.aiDisclosure}</dd></div>}
       </dl>
       {data.playUrl && <a class="button" href={data.playUrl} rel="noopener" target="_blank">Play the game<span class="sr-only"> (opens in new tab)</span></a>}
     </section>

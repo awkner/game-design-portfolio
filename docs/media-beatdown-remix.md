@@ -22,10 +22,10 @@ O site usa só o **mp4** (e um `.jpg` de cartaz no hero), copiados à mão para 
 | No site (`public/media/beatdown-remix/`) | No jogo (`docs/portfolio/gifs/`) | Tomada | Duração | O que acontece na tela |
 |---|---|---|---|---|
 | `hero-loop.mp4` + `hero-loop.jpg` | `bonnie_loop.mp4` | #1 | 4,47 s | Uma frase inteira da Seção 1: o Call da Bonnie (REC, boss projetado), o rewind de uma batida (REW), a Response (PLAY) com blocks Perfect, depois o finisher (BAM) e o bonus no contratempo. O `.jpg` é um quadro de 3,2 s tirado com ffmpeg. |
-| `clip-walking.mp4` | `bonnie_walking.mp4` | #3 | 4,47 s | Frase da Seção 2 com walking notes: a nota de borda marcada começa numa batida e corre para outra; a Response segue o destino. |
+| `clip-walking.mp4` | `bonnie_walking.mp4` | #3 | 4,47 s | Frase da Seção 2 com feints: a nota de borda marcada começa numa batida e corre para outra; a Response segue o destino. |
 | `clip-claps.mp4` | `bonnie_claps.mp4` | #5 | 4,47 s | Frase de 6 notas da Seção 3: as mãos da plateia fecham sobre a fita a cada batida e escondem os botões, que só aparecem entre as palmas. Termina em POW e BONUS! PERFECT. |
 | `clip-intermission.mp4` | `bonnie_opening_dialogue.mp4` | #43 (cobre a #7) | 13,2 s | Balões de fala sobre o palco ao vivo, do "Ever tried asking nicely?" da Bonnie até a promo gritada quando "Riot" começa, terminando na Kass. É a abertura, não um intermission do meio da música: por isso a legenda diz "Dialogue". |
-| `valse-loop.mp4` | `valse_mock.mp4` | #38 | 4,8 s | Count Valse em 3/4: defende, defende, ataca, com a fita dividida em terços. |
+| `valse-loop.mp4` | `valse_mock.mp4` | #38 | 4,8 s | Count Valse em 3/4: defende, defende, ataca, com a fita dividida em dois compassos de três. |
 | `molotov-loop.mp4` | `molotov_mock.mp4` | #39 | 7,68 s | Maestro Molotov: uma hold note desenhada como pavio, a bomba jogada e a explosão quando o jogador solta no fim do pavio. |
 
 Defeito conhecido, aceito pelo Bruno: nos primeiros instantes de cada loop de frase, o texto lateral da frase anterior ("FINISHER!" / "BONUS! PERFECT") ainda está sumindo. É o que o jogo mostra.
@@ -34,12 +34,12 @@ Defeito conhecido, aceito pelo Bruno: nos primeiros instantes de cada loop de fr
 
 | Clipe | Hoje | Por que cabe ali | Outros lugares possíveis |
 |---|---|---|---|
-| `hero-loop` | Hero, no topo | O loop central inteiro numa olhada: o boss grava, a fita volta, você responde. | Decisão 1 (de pulse-reading para call and response); decisão 5 (o Call como prévia). |
-| `clip-walking` | How it plays, grade | A primeira variação do loop base: uma finta que aparece no Call antes de cobrar na Response. | Decisão 3 (twists a partir do loop base). |
-| `clip-claps` | How it plays, grade | A segunda variação: esconder os botões no ritmo sem esconder o ritmo. | Decisão 3; a série de iterações das palmas (#35) se um dia existir. |
-| `clip-intermission` | How it plays, grade (largura inteira, classe `wide`) | A regra "a música nunca para": a história acontece em cima do palco e da música. | Narrative. |
-| `valse-loop` | Range: two more bosses as loops | Mostra alcance: compasso diferente (3/4) sem arte nova da Kass. | — |
-| `molotov-loop` | Range: two more bosses as loops | Mostra alcance: uma mecânica nova (hold note) sobre o mesmo motor. | — |
+| `hero-loop` | Hero, no topo | O loop central inteiro numa olhada: o boss grava, a fita volta, você responde. | The first version asked too much. |
+| `clip-walking` | Twists without new buttons, grade | A feint: nota de borda marcada que corre meia batida no Call antes de cobrar na Response. | — |
+| `clip-claps` | Twists without new buttons, grade | As palmas: esconder os botões no ritmo sem esconder o ritmo. | A série de iterações das palmas (#35) se um dia existir. |
+| `clip-intermission` | The story | A regra "a música nunca para": a história acontece em cima do palco e da música. | — |
+| `valse-loop` | Every opponent plays differently | Cada luta tem mecânicas próprias: Valse em 3/4, fita em dois compassos de três. | — |
+| `molotov-loop` | Every opponent plays differently | Cada luta tem mecânicas próprias: hold note como pavio (segura para se preparar, solta para esquivar). | — |
 
 ## As imagens (`src/assets/projects/beatdown-remix/`)
 
@@ -47,17 +47,17 @@ Nenhuma é cópia byte a byte de um arquivo do jogo: foram redimensionadas ou ex
 
 | Arquivo | Onde está na página | Origem | O que mostra |
 |---|---|---|---|
-| `cover.png` | Capa (card e topo) | Conceitos `kass_concept.webp` + `bonnie_concept.png` (`docs/design/art/`), tomada #17 | Kass e Bonnie lado a lado. Legenda "Concept art". |
-| `shot-call.png` | Decisão 5, The Call as a preview | Script de shots do jogo, tomada #37 | O Call: filtro de gravação, REC piscando, Bonnie projetada, notas na fita. |
-| `shot-response.png` | Decisão 5 | Script de shots do jogo, tomada #37 | A Response: palco em cores, Kass bloqueando, efeito na cor do botão. |
-| `chart-timeline.png` | Decisão 5 (fim da seção) | Diagrama feito a partir de `public/chart.json`, tomada #21 | A chart de "Riot": intro, quatro seções e três intermissions em 2:59. |
-| `shot-title.png` | Design artifacts | Script de shots do jogo, tomada #11 | Tela de título com logo e key art da Kass. |
-| `shot-calibration.png` | Design artifacts | Script de shots do jogo, tomada #27 | Calibração: 16 toques na batida com a Kass socando o saco de pancada. |
-| `bonnie-poses.png` | Design artifacts | `docs/design/art/sprites/final/` (pose sheet), tomada #18 | Nove poses da Bonnie, do idle à derrota. |
-| `rig-vs-sprite.png` | Design artifacts | `docs/design/art/rig/kass_rig_v4/punch_vs_sprite.png`, tomada #16 | O rig recortado contra o sprite: uma abordagem descartada, com a prova. |
-| `arena-backdrop.png` | Design artifacts | `docs/design/art/stage/` (fundo da arena) | A arena vazia com treliça, holofotes e arquibancada. |
-| `crowd-hyped.png` | Design artifacts | `docs/design/art/crowd/` (sheet "hyped"), tomada #20 | Doze membros da plateia no humor animado. |
-| `shot-results.png` | Design artifacts | Script de shots do jogo, tomada #10 | Tela de resultados depois de um T.K.O. |
+| `cover.png` | Capa (card e topo) | Mesma imagem de `shot-response.png` (script de shots do jogo, tomada #37) | A Response: Kass bloqueia um tapa da Bonnie, PERFECT na tela. |
+| `shot-call.png` | How it plays | Script de shots do jogo, tomada #37 | O Call: filtro de gravação, REC piscando, Bonnie projetada, notas na fita. |
+| `shot-response.png` | Fora da página (é a capa) | Script de shots do jogo, tomada #37 | A Response: palco em cores, Kass bloqueando, efeito na cor do botão. |
+| `chart-timeline.png` | Twists without new buttons (fim da seção) | Diagrama feito a partir de `public/chart.json`, tomada #21 | A chart de "Riot": intro, quatro seções e três intermissions em 2:59. |
+| `shot-title.png` | Art and front end (recolhida) | Script de shots do jogo, tomada #11 | Tela de título com logo e key art da Kass. |
+| `shot-calibration.png` | Art and front end (recolhida) | Script de shots do jogo, tomada #27 | Calibração: 16 toques na batida com a Kass socando o saco de pancada. |
+| `bonnie-poses.png` | Art and front end (recolhida) | `docs/design/art/sprites/final/` (pose sheet), tomada #18 | Nove poses da Bonnie, do idle à derrota. |
+| `rig-vs-sprite.png` | Art and front end (recolhida) | `docs/design/art/rig/kass_rig_v4/punch_vs_sprite.png`, tomada #16 | O rig recortado contra o sprite: uma abordagem descartada, com a prova. |
+| `arena-backdrop.png` | Art and front end (recolhida) | `docs/design/art/stage/` (fundo da arena) | A arena vazia com treliça, holofotes e arquibancada. |
+| `crowd-hyped.png` | Art and front end (recolhida) | `docs/design/art/crowd/` (sheet "hyped"), tomada #20 | Doze membros da plateia no humor animado. |
+| `shot-results.png` | Art and front end (recolhida) | Script de shots do jogo, tomada #10 | Tela de resultados depois de um T.K.O. |
 
 ## O que não existe (e não deve voltar para a página sem gravar antes)
 
