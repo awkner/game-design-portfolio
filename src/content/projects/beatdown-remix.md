@@ -16,8 +16,7 @@ tools: [TypeScript, Web Audio, Vite, Vitest, Python, PostHog, Claude (AI assista
 duration: Prototype spec Sep 2026; call-and-response build 8-21 Nov 2026
 year: 2026
 cover: ../../assets/projects/beatdown-remix/cover.png
-coverCaption: Concept art
-coverAlt: Concept art of the two fighters side by side on a light background. On the left, Kass, a red-haired brawler in a red jacket and denim shorts. On the right, Bonnie Boomin', a wrestler with a blonde mohawk, face paint and purple and gold gear.
+coverAlt: In-game screenshot of the Response. Kass, a red-haired brawler in a red jacket, blocks a slap from Bonnie Boomin', a wrestler with a blonde mohawk and face paint, while PERFECT flashes on the left and the tape strip at the top shows the next arrows.
 disciplines: [Combat Design, Balancing, Narrative Design, Game Feel]
 tags: [Rhythm, Combat, Narrative, Systems design]
 featured: true
