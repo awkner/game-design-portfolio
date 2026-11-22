@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import { Image, getImage } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { url } from '../../utils/url';
+import '../../styles/project-media.css';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects', ({ data }) => !data.draft);
@@ -82,4 +83,23 @@ const og = await getImage({ src: data.cover, width: 1200, height: 630, fit: 'cov
     setTitle(d);
     d.addEventListener('toggle', () => setTitle(d));
   });
+
+  // Muted loops play only while on screen; with reduced motion they stay paused and get controls.
+  const loops = document.querySelectorAll<HTMLVideoElement>('.prose video[autoplay]');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  loops.forEach((v) => {
+    v.removeAttribute('autoplay');
+    v.pause();
+    if (reduce) v.controls = true;
+  });
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        const v = e.target as HTMLVideoElement;
+        if (e.isIntersecting) void v.play().catch(() => {});
+        else v.pause();
+      });
+    }, { threshold: 0.25 });
+    loops.forEach((v) => io.observe(v));
+  }
 </script>

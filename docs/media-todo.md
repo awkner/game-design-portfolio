@@ -4,11 +4,8 @@ Moved out of the project pages. Not published with the site.
 
 ## DICEFORCE
 
-No combat video or GIF exists yet.
+Five clips exist (push-tank, enemy-turn, boss-magnetizer, electric-water, run-flow). What each shows and where it fits: `docs/media-diceforce.md`. The Fuel Tank combo and the two-click Push are both in `push-tank`; the enemy rolls and previews are in `enemy-turn`.
 
-- 10-15 s combat clip with the Fuel Tank outcome: push a tank onto burning oil near an enemy (OBS, 1600x900, no debug UI)
-- GIF: the two-click Push (pick target, pick destination tile with the path preview)
-- GIF: one full round, from enemy rolls to END TURN
 - Image: "Blocked" legend with the Archer shooting behind a building
 - Diagrams to draw: anatomy card of one face (Painted Target), the Fuel Tank before/after resolution order, win rate by floor chart (Equilibrado profile)
 - Fresh 1600x900 captures of the current build: map, reward, garage, inventory, editor

@@ -53,6 +53,10 @@ A página mostra: caixa de resumo (Role, Team, Duration, Tools, Platform, Status
 
 Os três projetos (`diceforce.md`, `beatdown-remix.md`, `roblox-anomaly.md`) usam essa estrutura; cada um tem um comentário HTML no topo com a mídia que ainda falta capturar. A experiência profissional e o currículo vivem em `src/data/resume.ts` (fonte única), usada por `/resume/` (versão web) e `/resume/print/` (versão impressa, base do PDF). `/experience/` redireciona para `/resume/`.
 
+## Mídia (vídeos e GIFs)
+
+Clipes curtos ficam em `public/media/<projeto>/` (`.mp4` + `.jpg` de cartaz) e entram no Markdown como `<video>` dentro de `<figure>` (classes em `src/styles/project-media.css`). A pasta `docs/` não é publicada: `docs/media-todo.md` lista o que falta capturar, e `docs/media-diceforce.md` cataloga os clipes do DICEFORCE (o que cada um mostra, de onde vem e onde encaixa na página).
+
 ## Onde editar as configurações
 
 - `src/site.config.ts`: nome do site, seu nome, `specialty`, tagline, `languages`, `ogImage` (imagem 1200x630 em `public/`), `lastUpdated` (`'AAAA-MM'`, manual: atualize quando os projetos mudarem; aparece como "Last updated" no rodapé; o ano do © é o do build), e-mail, LinkedIn, ArtStation (`artstation`) e link do currículo. Procure pelos comentários `TODO`.

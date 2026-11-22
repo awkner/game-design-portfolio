@@ -2,7 +2,7 @@
 title: DICEFORCE
 summary: A hex-grid tactics roguelike where each mech's actions are the faces of a die. A small set of verbs, tags and properties combine on their own, and every rule is guarded by a test.
 role: Solo game designer
-aiDisclosure: Concept, design, rule decisions, playtesting and art direction are mine. Code, GDD drafting, bot simulations and a first UI pass were done by an AI assistant (Claude) working from my specs. Concept and tile art references were generated with image models.
+aiDisclosure: Every creative idea is mine. That covers the concept, the whole game design and every rule decision, the mechs, enemies and boss, the UI, and the art concepts for every mech, enemy, prop and screen. AI was used only to execute. Claude wrote the code, wrote my decisions into the design doc and ran the bot simulations, all from my specs. Image models (GPT Image) and Tripo 3D rendered my art concepts into images and 3D models.
 status: prototype
 teamSize: 1
 platform: [PC]
@@ -10,8 +10,10 @@ contribution:
   - Defined the pillars, the four systemic laws and the turn structure
   - Made the rule decisions logged in the design doc (initiative, terrain, push and pull, resolution order)
   - Set the playtest and bot-bench method, and decided what the numbers may and may not conclude
-  - Art direction for the mechs, tiles and UI
-tools: [Godot 4.7 (C#), xUnit bot bench, Claude (AI assistant), image models for art references]
+  - Designed the mechs, the enemy roster and the Magnetizer boss (two parts, each with its own die)
+  - Art concepts for every mech, enemy, prop and screen, and the UI design
+  - Directed the AI tools that executed the code, the doc write-up and the 3D models
+tools: [Godot 4.7 (C#), xUnit bot bench, Blender, Claude (AI, code execution), GPT Image and Tripo 3D (rendering my art concepts)]
 duration: Since Aug 2026 (ongoing)
 year: 2026
 cover: ../../assets/projects/diceforce/cover.png
@@ -27,6 +29,13 @@ tldr:
   evidence: "Playable prototype with a headless bot bench; bench numbers are raw readings, and no outside playtest has happened yet."
 ---
 
+<!-- MEDIA: clips are recorded from the real game with scripted scenes (gifs.bat in the game repo, Godot Movie Maker). The scripts only press the player's buttons and force die faces; no rule is faked. What each clip shows and where else it fits: docs/media-diceforce.md. -->
+
+<figure class="media-hero">
+  <video src="/game-design-portfolio/media/diceforce/push-tank.mp4" poster="/game-design-portfolio/media/diceforce/push-tank.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Archer sets a Stinger standing on oil on fire. Colossus shoulder-charges the burning Stinger into a Fuel Tank, which catches fire, explodes and lights the oil around it."></video>
+  <figcaption>A chain no rule describes: fire, oil, a push and the tank's death outcome combine on their own.</figcaption>
+</figure>
+
 ## The problem
 
 Tactics games with a roguelike structure usually fill their depth with hand-written card or ability text. Every new unit means new special cases, and the player memorises exceptions instead of reading a board.
@@ -39,6 +48,27 @@ I wanted a tactics game where depth comes from a few pieces that combine by them
 - **Systemic by rule.** Adding a tag must never require hand-coding its interactions. Anything that needs "...but only on a shield face" is content, not a system.
 - **Dominate the luck, don't fight it.** The enemy shows its face before it acts. Reroll is an honest gamble, and undo cannot be farmed for a better roll.
 - **Super Sentai tone.** Chibi mechs, a cartoonishly wrecked city, a name on every move.
+
+## Watch it
+
+<div class="media-grid">
+  <figure>
+    <video src="/game-design-portfolio/media/diceforce/enemy-turn.mp4" poster="/game-design-portfolio/media/diceforce/enemy-turn.jpg" autoplay muted loop playsinline preload="none" aria-label="The round opens with the dice rolling like spinning engines. Enemies then move and lock their attacks, each with a marker showing who it will hit."></video>
+    <figcaption><strong>Round opening.</strong> The dice roll, then enemies move and lock their attacks in the open, before the squad acts.</figcaption>
+  </figure>
+  <figure>
+    <video src="/game-design-portfolio/media/diceforce/boss-magnetizer.mp4" poster="/game-design-portfolio/media/diceforce/boss-magnetizer.jpg" autoplay muted loop playsinline preload="none" aria-label="The Magnetizer boss shields itself, absorbs a shot, casts Magnetic Storm on the squad and pulls the mechs into collisions."></video>
+    <figcaption><strong>The Magnetizer.</strong> A D9 core and D5 plating, so it acts twice a round. It turns the squad's own magnetism against them.</figcaption>
+  </figure>
+  <figure>
+    <video src="/game-design-portfolio/media/diceforce/electric-water.mp4" poster="/game-design-portfolio/media/diceforce/electric-water.jpg" autoplay muted loop playsinline preload="none" aria-label="Archer fires Voltaic Arc at a Crawler in a pool. The arc jumps through the enemies standing in water and reaches one on dry ground."></video>
+    <figcaption><strong>Electric in water.</strong> Water makes units Conductive: the arc hits harder in the pool and jumps two tiles from a Conductive unit.</figcaption>
+  </figure>
+  <figure>
+    <video src="/game-design-portfolio/media/diceforce/run-flow.mp4" poster="/game-design-portfolio/media/diceforce/run-flow.jpg" autoplay muted loop playsinline preload="none" aria-label="Squad hangar, then the run map, a reward card, a purchase and a repair in the garage, and a mod equipped on a die face."></video>
+    <figcaption><strong>The run loop.</strong> Squad, route, reward, garage, then the mod goes onto a die face.</figcaption>
+  </figure>
+</div>
 
 ## Process & iterations
 
@@ -135,7 +165,7 @@ I assumed the bot refused to kill a 1 HP enemy that explodes, because its fear t
 
 ## Result
 
-A playable prototype from squad select to map, combat, reward, garage and inventory. The rules live in a pure C# core with no engine code in it, so the bench can play full matches headless. Nine mechs (54 faces) exist, three of them with 3D models, plus one elite, one boss and 23 mods.
+A playable prototype from squad select to map, combat, reward, garage and inventory. The rules live in a pure C# core with no engine code in it, so the bench can play full matches headless. Nine mechs (54 faces), one elite, one boss and 23 mods exist in the rules. The portfolio build plays only what has a 3D model from my concepts: the three starting mechs and seven enemies, the Magnetizer boss and its Scrap included. Enemies still without a model (the Warden and the Prism elite) are switched off for now.
 
 Bench numbers, with profile and date: the combat curve by floor measured 142, 118 and 111 wins out of 200 (71%, 59%, 55.5%) with profile Equilibrado on 22 Aug 2026. The three-profile panel showed the same downward trend in every profile. Those are raw bench readings, not tuned balance.
 
@@ -147,8 +177,10 @@ Process results: an audit of 25 claims in my own design doc found 9 were false a
 - **Cost of a re-measure is never an argument for an exception.** I turned down a "just exclude the enemy shield" shortcut for that reason.
 - **Not validated:** feel, difficulty and readability with players who did not build it. The bench uses scripted bots, and the balance numbers are early. I want a blind playtest before tuning anything.
 - **Known gaps:** two confirmed bugs are parked (burning oil that never goes out, and factory-magnetic pairs re-stunning each other). The "die built over the run" pitch is not what the code does: a run modifies existing faces with mods and chooses which mechs to bring, but never adds faces. I describe it that way on purpose.
-- **Next:** record the combat footage, run the blind playtest, then decide the number of floors before rebalancing the danger budget.
+- **Next:** run the blind playtest, then decide the number of floors before rebalancing the danger budget.
 
 ## Credits
 
-Concept, design, rule decisions, playtesting and art direction: Bruno Santos Briseno. Code, GDD drafting, bot simulations and a first UI pass: Claude (AI assistant), from my specs. Fire and explosion flipbook VFX use a non-commercial licensed set and would be replaced with original art before any commercial use.
+Concept, game design, every rule decision, mech, enemy and boss design, UI design, playtesting, and the art concepts for every mech, enemy, prop and screen: Bruno Santos Briseno.
+
+AI was used only to execute that work. Claude (AI) wrote the code, wrote my decisions into the design doc and ran the bot simulations, from my specs and under my review. GPT Image and Tripo 3D rendered my art concepts into images and 3D models. Fire and explosion flipbook VFX use a non-commercial licensed set and would be replaced with original art before any commercial use.

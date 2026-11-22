@@ -1,0 +1,50 @@
+/* Video loops, gameplay video and image pairs inside a case study (.prose). */
+.prose .media-hero,
+.prose .media-video,
+.prose .media-grid figure,
+.prose .media-pair figure { margin: 0; }
+
+.prose .media-hero,
+.prose .media-video { margin: 1.5rem 0 2rem; }
+
+.prose video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #0b0f1f;
+  border: 3px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 5px 5px 0 var(--shadow);
+}
+
+.prose .media-hero video { box-shadow: 7px 7px 0 var(--orange); }
+
+.prose .media-hero figcaption,
+.prose .media-video figcaption,
+.prose .media-grid figcaption,
+.prose .media-pair figcaption { margin-top: 0.6rem; }
+
+.prose .media-grid,
+.prose .media-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 1.25rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.prose .media-grid figcaption strong { color: var(--ink); }
+
+.prose .media-pair img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.prose .media-pair p { margin: 0; }
+
+@media (max-width: 640px) {
+  .prose .media-grid,
+  .prose .media-pair { grid-template-columns: 1fr; }
+}
