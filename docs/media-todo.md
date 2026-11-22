@@ -12,15 +12,13 @@ Five clips exist (push-tank, enemy-turn, boss-magnetizer, electric-water, run-fl
 
 ## BEATDOWN REMIX
 
-No gameplay capture exists yet; the debug autoplay button must be removed first.
+Six clips are on the page (hero loop, walking note, claps, opening dialogue, Count Valse, Maestro Molotov). What each shows, where it comes from and where it fits: `docs/media-beatdown-remix.md`. The full shot list with status lives in the game repo: `D:\BEATDOWN REMIX\docs\portfolio\dossier\11_media_checklist.md`. The gameplay video with sound was dropped on 2026-11-22.
 
-- Hero GIF, 6-8 s: one full Call -> rewind -> Response with Bonnie on screen
-- 60-90 s gameplay video with sound, real dialogue, no debug UI
-- GIFs: the walking note (origin, dash, destination), a "fell for it" miss, a claps phrase with the crowd-hands lane
+- Clip of the T.K.O. ending (can be cut from `output/full_take.mp4` in the game repo)
+- GIF: a "fell for it" miss on a walking note (needs a human run)
 - Annotated still of the tape strip (call notes, finisher slot, bonus slot)
-- Stills: K.O. / T.K.O. / DRAW / FLAWLESS banners; title screen; results screen
+- Stills: K.O. / T.K.O. / loss / FLAWLESS endings
 - Before/after stills of the claps iterations and the placeholder stage vs the painted arena (needs an older build)
-- Playable web build embed once the debug tools are stripped
 
 ## Nao Tire o Olho (Roblox)
 

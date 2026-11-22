@@ -55,7 +55,7 @@ Os três projetos (`diceforce.md`, `beatdown-remix.md`, `roblox-anomaly.md`) usa
 
 ## Mídia (vídeos e GIFs)
 
-Clipes curtos ficam em `public/media/<projeto>/` (`.mp4` + `.jpg` de cartaz) e entram no Markdown como `<video>` dentro de `<figure>` (classes em `src/styles/project-media.css`). A pasta `docs/` não é publicada: `docs/media-todo.md` lista o que falta capturar, e `docs/media-diceforce.md` cataloga os clipes do DICEFORCE (o que cada um mostra, de onde vem e onde encaixa na página).
+Clipes curtos ficam em `public/media/<projeto>/` (`.mp4` + `.jpg` de cartaz) e entram no Markdown como `<video>` dentro de `<figure>` (classes em `src/styles/project-media.css`). A pasta `docs/` não é publicada: `docs/media-todo.md` lista o que falta capturar, e `docs/media-diceforce.md` e `docs/media-beatdown-remix.md` catalogam os clipes e imagens de cada jogo (o que cada um mostra, de onde vem e onde encaixa na página).
 
 ## Onde editar as configurações
 

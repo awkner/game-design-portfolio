@@ -48,12 +48,7 @@ Rhythm games rarely give repetition a physical meaning. Call and response usuall
 - **Fair reading.** The boss never lies. The Call shows exactly what comes back, so the challenge is memory and precision.
 - **Every fight tells a story.** Dialogue sits inside the song, in rests of the chart. The music never stops.
 
-## Watch it
-
-<figure class="media-video">
-  <video src="/game-design-portfolio/media/beatdown-remix/gameplay.mp4" poster="/game-design-portfolio/media/beatdown-remix/gameplay.jpg" controls playsinline preload="none" aria-label="Gameplay video of the Bonnie Boomin' fight, with sound."></video>
-  <figcaption>The Bonnie Boomin' fight, with sound. Want to try it? <a href="https://awkner.itch.io/beatdown-remix-demo-v01?secret=3i41o6UZr8OhftGm1uuZ3A2P3DU" rel="noopener" target="_blank">Play it in the browser on itch.io</a> (keyboard, desktop).</figcaption>
-</figure>
+Want to try it? <a href="https://awkner.itch.io/beatdown-remix-demo-v01?secret=3i41o6UZr8OhftGm1uuZ3A2P3DU" rel="noopener" target="_blank">Play the Bonnie Boomin' fight in the browser on itch.io</a> (keyboard, desktop).
 
 ## How it plays
 
@@ -70,13 +65,9 @@ The three arrows are blocks. A missed block costs Kass 13 of 100 health and a go
     <video src="/game-design-portfolio/media/beatdown-remix/clip-claps.mp4" autoplay muted loop playsinline preload="none" aria-label="Crowd hands fill the tape lane and close on every beat, hiding which slots hold notes."></video>
     <figcaption><strong>Claps.</strong> Crowd hands close over the whole lane; play the rhythm you saw, the buttons from memory.</figcaption>
   </figure>
-  <figure>
-    <video src="/game-design-portfolio/media/beatdown-remix/clip-intermission.mp4" autoplay muted loop playsinline preload="none" aria-label="Bonnie and Kass trade lines in speech bubbles over the stage while the song keeps playing."></video>
-    <figcaption><strong>Intermission.</strong> The notes stop, the song doesn't: dialogue sits in a rest of the chart.</figcaption>
-  </figure>
-  <figure>
-    <video src="/game-design-portfolio/media/beatdown-remix/clip-ending.mp4" autoplay muted loop playsinline preload="none" aria-label="The song ends with Kass standing, and the T.K.O. ending plays."></video>
-    <figcaption><strong>T.K.O.</strong> Survive the song to win; a K.O. needs every hit Perfect.</figcaption>
+  <figure class="wide">
+    <video src="/game-design-portfolio/media/beatdown-remix/clip-intermission.mp4" autoplay muted loop playsinline preload="none" aria-label="Bonnie and Kass trade lines in speech bubbles over the stage as the opening runs into the song."></video>
+    <figcaption><strong>Dialogue.</strong> The story plays over the stage, and the song never stops for it.</figcaption>
   </figure>
 </div>
 
@@ -175,8 +166,8 @@ The demo has one opponent, so I designed two more around mechanics Bonnie does n
     <figcaption><strong>Count Valse.</strong> Waltz time: defend, defend, attack in every bar, with the tape split so the pattern reads before a note arrives.</figcaption>
   </figure>
   <figure>
-    <video src="/game-design-portfolio/media/beatdown-remix/molotov-loop.mp4" autoplay muted loop playsinline preload="none" aria-label="Maestro Molotov: a hold note drawn as a burning fuse, and the bomb arrives on the release beat."></video>
-    <figcaption><strong>Maestro Molotov.</strong> The hold note as a burning fuse: hold through it, dodge on the release beat.</figcaption>
+    <video src="/game-design-portfolio/media/beatdown-remix/molotov-loop.mp4" autoplay muted loop playsinline preload="none" aria-label="Maestro Molotov: a hold note drawn as a burning fuse, and the bomb explodes on the release beat."></video>
+    <figcaption><strong>Maestro Molotov.</strong> The hold note as a burning fuse: hold through it, release on the end beat and the bomb goes off.</figcaption>
   </figure>
 </div>
 

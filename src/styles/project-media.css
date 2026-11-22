@@ -34,6 +34,7 @@
 }
 
 .prose .media-grid figcaption strong { color: var(--ink); }
+.prose .media-grid figure.wide { grid-column: 1 / -1; }
 
 .prose .media-pair img {
   display: block;
